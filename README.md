@@ -1,2761 +1,4411 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>مكافح | حلول ذكية للحماية من الحرائق</title>
-
-<meta name="description"
-content="مكافح - شركة تقنية ناشئة تطور حلولًا ذكية للحماية من الحرائق باستخدام الذكاء الاصطناعي والطائرات بدون طيار والتقنيات المتقدمة.">
-
-<meta name="theme-color" content="#080808">
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap');
-
-:root{
-    --black:#070707;
-    --dark:#0d0d0d;
-    --dark2:#141414;
-    --red:#d51f2f;
-    --red2:#ff3445;
-    --white:#ffffff;
-    --muted:#a7a7a7;
-    --line:rgba(255,255,255,.09);
-    --glass:rgba(255,255,255,.045);
-    --radius:24px;
-    --container:1200px;
-}
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    scroll-behavior:smooth;
-}
-
-html{
-    background:var(--black);
-}
-
-body{
-    font-family:"Cairo",sans-serif;
-    background:
-        radial-gradient(circle at 85% 10%,rgba(213,31,47,.12),transparent 25%),
-        var(--black);
-    color:var(--white);
-    overflow-x:hidden;
-}
-
-body.en{
-    font-family:"Inter",sans-serif;
-}
-
-a{
-    color:inherit;
-    text-decoration:none;
-}
-
-img{
-    max-width:100%;
-    display:block;
-}
-
-button{
-    font-family:inherit;
-}
-
-.container{
-    width:min(var(--container),calc(100% - 40px));
-    margin:auto;
-}
-
-.red{
-    color:var(--red2);
-}
-
-/* ================= NAVBAR ================= */
-
-.navbar{
-    position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    z-index:1000;
-    background:rgba(7,7,7,.72);
-    backdrop-filter:blur(18px);
-    border-bottom:1px solid var(--line);
-}
-
-.nav-inner{
-    height:78px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:30px;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo img{
-    width:48px;
-    height:48px;
-    object-fit:contain;
-}
-
-.logo-text strong{
-    display:block;
-    font-size:19px;
-    line-height:1;
-}
-
-.logo-text span{
-    display:block;
-    margin-top:5px;
-    color:#888;
-    font-size:9px;
-    letter-spacing:2px;
-    direction:ltr;
-}
-
-.nav-links{
-    display:flex;
-    gap:28px;
-    align-items:center;
-}
-
-.nav-links a{
-    color:#bdbdbd;
-    font-size:14px;
-    transition:.3s;
-}
-
-.nav-links a:hover{
-    color:white;
-}
-
-.nav-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.lang-btn{
-    border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.04);
-    color:white;
-    border-radius:50px;
-    padding:8px 15px;
-    cursor:pointer;
-    font-weight:700;
-    transition:.3s;
-}
-
-.lang-btn:hover{
-    border-color:var(--red);
-}
-
-.mobile-menu{
-    display:none;
-    background:none;
-    border:0;
-    color:white;
-    font-size:27px;
-    cursor:pointer;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-    min-height:100vh;
-    padding-top:78px;
-    position:relative;
-    display:flex;
-    align-items:center;
-    overflow:hidden;
-}
-
-.hero::before{
-    content:"";
-    position:absolute;
-    width:650px;
-    height:650px;
-    background:radial-gradient(circle,rgba(213,31,47,.2),transparent 68%);
-    top:-200px;
-    right:-160px;
-}
-
-.hero-grid{
-    display:grid;
-    grid-template-columns:1fr 1.15fr;
-    gap:55px;
-    align-items:center;
-    position:relative;
-    z-index:2;
-}
-
-.hero-content{
-    padding:60px 0;
-}
-
-.eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    border:1px solid rgba(213,31,47,.35);
-    background:rgba(213,31,47,.07);
-    color:#ff6370;
-    border-radius:50px;
-    padding:7px 14px;
-    font-size:12px;
-    margin-bottom:25px;
-}
-
-.eyebrow-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:var(--red2);
-    box-shadow:0 0 15px var(--red);
-}
-
-.hero h1{
-    font-size:clamp(42px,5vw,76px);
-    line-height:1.08;
-    font-weight:800;
-    letter-spacing:-2px;
-    margin-bottom:25px;
-}
-
-.hero h1 span{
-    color:var(--red2);
-}
-
-.hero-description{
-    color:#aaa;
-    font-size:18px;
-    line-height:2;
-    max-width:600px;
-    margin-bottom:35px;
-}
-
-.hero-buttons{
-    display:flex;
-    gap:13px;
-    flex-wrap:wrap;
-}
-
-.btn{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    padding:14px 23px;
-    border-radius:12px;
-    font-size:14px;
-    font-weight:700;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.btn-primary{
-    background:var(--red);
-    color:white;
-    box-shadow:0 10px 35px rgba(213,31,47,.22);
-}
-
-.btn-primary:hover{
-    background:#ef2a3b;
-    transform:translateY(-2px);
-}
-
-.btn-outline{
-    border:1px solid rgba(255,255,255,.14);
-    background:rgba(255,255,255,.035);
-}
-
-.btn-outline:hover{
-    background:rgba(255,255,255,.08);
-}
-
-.hero-visual{
-    position:relative;
-}
-
-.hero-image-wrap{
-    position:relative;
-    border-radius:32px;
-    overflow:hidden;
-    min-height:560px;
-    background:
-        linear-gradient(135deg,#161616,#080808);
-    border:1px solid rgba(255,255,255,.1);
-    box-shadow:0 35px 100px rgba(0,0,0,.5);
-}
-
-.hero-image-wrap::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:
-        linear-gradient(90deg,rgba(7,7,7,.65),transparent 60%),
-        linear-gradient(0deg,rgba(7,7,7,.45),transparent 55%);
-    pointer-events:none;
-}
-
-.hero-image{
-    width:100%;
-    height:560px;
-    object-fit:cover;
-}
-
-.hero-tech-card{
-    position:absolute;
-    bottom:25px;
-    right:25px;
-    z-index:4;
-    padding:18px 20px;
-    width:240px;
-    border-radius:18px;
-    background:rgba(10,10,10,.8);
-    backdrop-filter:blur(18px);
-    border:1px solid rgba(255,255,255,.12);
-}
-
-.hero-tech-card small{
-    color:#888;
-    display:block;
-    margin-bottom:5px;
-}
-
-.hero-tech-card strong{
-    font-size:18px;
-}
-
-.tech-line{
-    margin-top:12px;
-    height:3px;
-    background:#262626;
-    border-radius:10px;
-    overflow:hidden;
-}
-
-.tech-line span{
-    display:block;
-    width:86%;
-    height:100%;
-    background:var(--red);
-}
-
-/* ================= STATS ================= */
-
-.stats{
-    border-top:1px solid var(--line);
-    border-bottom:1px solid var(--line);
-    background:#0a0a0a;
-}
-
-.stats-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-}
-
-.stat{
-    padding:30px 20px;
-    text-align:center;
-    border-left:1px solid var(--line);
-}
-
-.stat:last-child{
-    border-left:0;
-}
-
-.stat strong{
-    font-size:30px;
-    display:block;
-}
-
-.stat span{
-    color:#858585;
-    font-size:12px;
-}
-
-/* ================= GENERAL SECTIONS ================= */
-
-section{
-    padding:110px 0;
-}
-
-.section-head{
-    max-width:760px;
-    margin-bottom:55px;
-}
-
-.section-kicker{
-    color:var(--red2);
-    font-size:12px;
-    font-weight:800;
-    letter-spacing:1px;
-    margin-bottom:12px;
-}
-
-.section-title{
-    font-size:clamp(30px,4vw,48px);
-    line-height:1.25;
-    margin-bottom:18px;
-}
-
-.section-description{
-    color:#919191;
-    line-height:2;
-    font-size:15px;
-}
-
-/* ================= ABOUT ================= */
-
-.about-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:70px;
-    align-items:center;
-}
-
-.about-card{
-    position:relative;
-    min-height:460px;
-    border-radius:30px;
-    background:
-        linear-gradient(135deg,#151515,#090909);
-    border:1px solid var(--line);
-    overflow:hidden;
-}
-
-.about-card::before{
-    content:"M";
-    position:absolute;
-    font-size:300px;
-    font-weight:900;
-    color:rgba(213,31,47,.055);
-    left:20px;
-    bottom:-80px;
-}
-
-.about-card img{
-    width:100%;
-    height:460px;
-    object-fit:cover;
-    opacity:.9;
-}
-
-.about-content p{
-    color:#999;
-    line-height:2.1;
-    font-size:16px;
-    margin-bottom:28px;
-}
-
-.check-list{
-    display:grid;
-    gap:14px;
-}
-
-.check{
-    display:flex;
-    align-items:flex-start;
-    gap:12px;
-    color:#d0d0d0;
-    font-size:14px;
-}
-
-.check-icon{
-    width:22px;
-    height:22px;
-    border-radius:7px;
-    flex:none;
-    display:grid;
-    place-items:center;
-    background:rgba(213,31,47,.12);
-    color:var(--red2);
-}
-
-/* ================= SOLUTIONS ================= */
-
-.services{
-    background:#090909;
-}
-
-.services-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.service-card{
-    position:relative;
-    padding:32px;
-    min-height:290px;
-    border-radius:24px;
-    background:linear-gradient(145deg,#161616,#0d0d0d);
-    border:1px solid var(--line);
-    transition:.35s;
-    overflow:hidden;
-}
-
-.service-card:hover{
-    transform:translateY(-7px);
-    border-color:rgba(213,31,47,.4);
-}
-
-.service-number{
-    color:#555;
-    font-size:13px;
-    font-weight:800;
-    direction:ltr;
-}
-
-.service-icon{
-    width:58px;
-    height:58px;
-    display:grid;
-    place-items:center;
-    border-radius:17px;
-    background:rgba(213,31,47,.1);
-    border:1px solid rgba(213,31,47,.15);
-    color:var(--red2);
-    font-size:25px;
-    margin:25px 0;
-}
-
-.service-card h3{
-    font-size:20px;
-    margin-bottom:12px;
-}
-
-.service-card p{
-    color:#888;
-    line-height:1.9;
-    font-size:14px;
-}
-
-/* ================= TECHNOLOGY ================= */
-
-.tech-grid{
-    display:grid;
-    grid-template-columns:1.1fr .9fr;
-    gap:55px;
-    align-items:center;
-}
-
-.tech-image{
-    border-radius:30px;
-    overflow:hidden;
-    border:1px solid var(--line);
-    min-height:500px;
-}
-
-.tech-image img{
-    width:100%;
-    height:500px;
-    object-fit:cover;
-}
-
-.tech-features{
-    display:grid;
-    gap:18px;
-}
-
-.tech-feature{
-    display:flex;
-    gap:18px;
-    padding:20px;
-    border:1px solid var(--line);
-    border-radius:18px;
-    background:rgba(255,255,255,.025);
-}
-
-.tech-feature-icon{
-    width:45px;
-    height:45px;
-    border-radius:13px;
-    display:grid;
-    place-items:center;
-    background:rgba(213,31,47,.1);
-    color:var(--red2);
-    flex:none;
-}
-
-.tech-feature h4{
-    margin-bottom:6px;
-}
-
-.tech-feature p{
-    color:#777;
-    font-size:13px;
-    line-height:1.8;
-}
-
-/* ================= HOW IT WORKS ================= */
-
-.process{
-    background:#090909;
-}
-
-.process-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.process-step{
-    padding:30px 22px;
-    border:1px solid var(--line);
-    border-radius:20px;
-    background:#101010;
-    position:relative;
-}
-
-.process-step::after{
-    content:"";
-    position:absolute;
-    top:45px;
-    left:-18px;
-    width:20px;
-    height:1px;
-    background:#333;
-}
-
-.process-step:last-child::after{
-    display:none;
-}
-
-.process-number{
-    color:var(--red2);
-    font-size:13px;
-    font-weight:800;
-    margin-bottom:25px;
-}
-
-.process-step h3{
-    margin-bottom:10px;
-}
-
-.process-step p{
-    color:#777;
-    font-size:13px;
-    line-height:1.8;
-}
-
-/* ================= SECTORS ================= */
-
-.sectors-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:15px;
-}
-
-.sector{
-    position:relative;
-    min-height:260px;
-    border-radius:22px;
-    overflow:hidden;
-    border:1px solid var(--line);
-}
-
-.sector img{
-    width:100%;
-    height:100%;
-    min-height:260px;
-    object-fit:cover;
-    transition:.5s;
-}
-
-.sector:hover img{
-    transform:scale(1.07);
-}
-
-.sector::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(0deg,rgba(0,0,0,.9),transparent 70%);
-}
-
-.sector-content{
-    position:absolute;
-    z-index:2;
-    bottom:20px;
-    right:20px;
-    left:20px;
-}
-
-.sector-content h3{
-    font-size:17px;
-}
-
-.sector-content p{
-    color:#aaa;
-    font-size:11px;
-    margin-top:5px;
-}
-
-/* ================= WHY US ================= */
-
-.why{
-    background:
-        radial-gradient(circle at 20% 50%,rgba(213,31,47,.08),transparent 35%),
-        #090909;
-}
-
-.why-grid{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:70px;
-    align-items:center;
-}
-
-.why-list{
-    display:grid;
-    gap:15px;
-}
-
-.why-item{
-    padding:22px;
-    border:1px solid var(--line);
-    border-radius:18px;
-    display:flex;
-    gap:16px;
-    background:rgba(255,255,255,.025);
-}
-
-.why-item-number{
-    width:35px;
-    height:35px;
-    border-radius:11px;
-    display:grid;
-    place-items:center;
-    background:var(--red);
-    font-size:12px;
-    font-weight:800;
-    flex:none;
-}
-
-.why-item h3{
-    font-size:15px;
-    margin-bottom:5px;
-}
-
-.why-item p{
-    color:#777;
-    font-size:12px;
-    line-height:1.8;
-}
-
-/* ================= AWARDS ================= */
-
-.awards{
-    background:#070707;
-}
-
-.awards-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.award-card{
-    border:1px solid var(--line);
-    border-radius:22px;
-    overflow:hidden;
-    background:#101010;
-    cursor:pointer;
-    transition:.35s;
-}
-
-.award-card:hover{
-    transform:translateY(-6px);
-    border-color:rgba(213,31,47,.45);
-}
-
-.award-image{
-    height:230px;
-    background:#151515;
-    overflow:hidden;
-}
-
-.award-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.5s;
-}
-
-.award-card:hover .award-image img{
-    transform:scale(1.04);
-}
-
-.award-info{
-    padding:20px;
-}
-
-.award-info small{
-    color:var(--red2);
-    font-size:11px;
-}
-
-.award-info h3{
-    margin-top:7px;
-    font-size:16px;
-}
-
-.award-info p{
-    color:#777;
-    font-size:12px;
-    margin-top:7px;
-    line-height:1.7;
-}
-
-/* ================= MILESTONES ================= */
-
-.timeline{
-    position:relative;
-    max-width:900px;
-    margin:auto;
-}
-
-.timeline::before{
-    content:"";
-    position:absolute;
-    top:0;
-    bottom:0;
-    right:16px;
-    width:1px;
-    background:#292929;
-}
-
-.timeline-item{
-    position:relative;
-    padding-right:55px;
-    margin-bottom:38px;
-}
-
-.timeline-dot{
-    position:absolute;
-    right:8px;
-    top:4px;
-    width:17px;
-    height:17px;
-    border-radius:50%;
-    background:var(--red);
-    border:4px solid #070707;
-    box-shadow:0 0 0 1px var(--red);
-}
-
-.timeline-year{
-    color:var(--red2);
-    font-size:12px;
-    font-weight:800;
-}
-
-.timeline-item h3{
-    margin:7px 0;
-}
-
-.timeline-item p{
-    color:#777;
-    font-size:13px;
-    line-height:1.9;
-}
-
-/* ================= MEDIA ================= */
-
-.media-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.media-card{
-    border:1px solid var(--line);
-    border-radius:20px;
-    padding:25px;
-    background:#101010;
-}
-
-.media-card span{
-    font-size:28px;
-    color:var(--red2);
-}
-
-.media-card h3{
-    margin:15px 0 8px;
-}
-
-.media-card p{
-    color:#777;
-    font-size:12px;
-    line-height:1.8;
-}
-
-/* ================= CONTACT ================= */
-
-.contact{
-    background:
-        linear-gradient(135deg,rgba(213,31,47,.12),transparent 45%),
-        #0b0b0b;
-}
-
-.contact-grid{
-    display:grid;
-    grid-template-columns:.8fr 1.2fr;
-    gap:50px;
-    align-items:start;
-}
-
-.contact-info{
-    padding-top:10px;
-}
-
-.contact-info p{
-    color:#888;
-    line-height:2;
-    margin:20px 0 30px;
-}
-
-.socials{
-    display:flex;
-    flex-wrap:wrap;
-    gap:10px;
-}
-
-.social{
-    padding:11px 15px;
-    border:1px solid var(--line);
-    border-radius:12px;
-    background:rgba(255,255,255,.025);
-    font-size:12px;
-    transition:.3s;
-}
-
-.social:hover{
-    border-color:var(--red);
-    transform:translateY(-2px);
-}
-
-.contact-form{
-    background:#101010;
-    border:1px solid var(--line);
-    padding:30px;
-    border-radius:25px;
-}
-
-.form-group{
-    margin-bottom:17px;
-}
-
-.form-group label{
-    display:block;
-    color:#aaa;
-    font-size:12px;
-    margin-bottom:7px;
-}
-
-.form-group input,
-.form-group textarea{
-    width:100%;
-    background:#080808;
-    border:1px solid #222;
-    color:white;
-    border-radius:12px;
-    padding:14px;
-    font-family:inherit;
-    outline:none;
-    transition:.3s;
-}
-
-.form-group input:focus,
-.form-group textarea:focus{
-    border-color:var(--red);
-}
-
-.form-group textarea{
-    min-height:140px;
-    resize:vertical;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-    padding:35px 0;
-    border-top:1px solid var(--line);
-    background:#050505;
-}
-
-.footer-inner{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-
-.footer-inner p{
-    color:#666;
-    font-size:11px;
-}
-
-.footer-brand{
-    font-weight:800;
-}
-
-.footer-brand span{
-    color:var(--red2);
-}
-
-/* ================= MODAL ================= */
-
-.modal{
-    position:fixed;
-    inset:0;
-    z-index:3000;
-    background:rgba(0,0,0,.88);
-    backdrop-filter:blur(10px);
-    display:none;
-    place-items:center;
-    padding:25px;
-}
-
-.modal.active{
-    display:grid;
-}
-
-.modal-content{
-    position:relative;
-    max-width:900px;
-    max-height:90vh;
-}
-
-.modal-content img{
-    max-height:85vh;
-    width:auto;
-    max-width:100%;
-    border-radius:15px;
-}
-
-.modal-close{
-    position:absolute;
-    top:-45px;
-    left:0;
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    border:1px solid #444;
-    background:#111;
-    color:white;
-    cursor:pointer;
-    font-size:20px;
-}
-
-/* ================= MOBILE ================= */
-
-@media(max-width:950px){
-
-    .nav-links{
-        position:absolute;
-        top:78px;
-        right:20px;
-        left:20px;
-        display:none;
-        flex-direction:column;
-        align-items:stretch;
-        padding:20px;
-        border:1px solid var(--line);
-        background:#0d0d0d;
-        border-radius:18px;
-    }
-
-    .nav-links.active{
-        display:flex;
-    }
-
-    .mobile-menu{
-        display:block;
-    }
-
-    .hero-grid,
-    .about-grid,
-    .tech-grid,
-    .why-grid,
-    .contact-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero{
-        min-height:auto;
-    }
-
-    .hero-content{
-        padding-top:80px;
-    }
-
-    .hero-image-wrap,
-    .hero-image{
-        min-height:400px;
-        height:400px;
-    }
-
-    .services-grid,
-    .awards-grid,
-    .media-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .process-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .sectors-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .process-step::after{
-        display:none;
-    }
-}
-
-@media(max-width:600px){
-
-    .container{
-        width:min(100% - 28px,var(--container));
-    }
-
-    section{
-        padding:75px 0;
-    }
-
-    .hero h1{
-        font-size:43px;
-    }
-
-    .hero-description{
-        font-size:15px;
-    }
-
-    .stats-grid{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .stat{
-        border-bottom:1px solid var(--line);
-    }
-
-    .services-grid,
-    .awards-grid,
-    .media-grid,
-    .process-grid,
-    .sectors-grid{
-        grid-template-columns:1fr;
-    }
-
-    .hero-tech-card{
-        right:15px;
-        bottom:15px;
-    }
-
-    .footer-inner{
-        flex-direction:column;
-        text-align:center;
-    }
-}
-
-</style>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#090909">
+
+    <meta name="description"
+          content="مكافح | حلول ذكية للحماية من الحرائق تجمع بين الهندسة والذكاء الاصطناعي والطائرات المسيّرة.">
+
+    <meta name="keywords"
+          content="مكافح, مكافحة الحرائق, الذكاء الاصطناعي, الطائرات المسيّرة, FireTech, Saudi Arabia, MUKAFIH">
+
+    <meta property="og:title"
+          content="مكافح | MUKAFIH">
+
+    <meta property="og:description"
+          content="نبتكر اليوم لنحمي الغد. حلول ذكية للحماية من الحرائق.">
+
+    <meta property="og:type"
+          content="website">
+
+    <meta property="og:url"
+          content="https://malakalobidan.github.io/MUKKAFH/">
+
+    <title>مكافح | MUKAFIH — Fire Protection Technology</title>
+
+    <link rel="icon"
+          href="assets/mukafih-logo.png">
+
+    <style>
+
+        /* =========================================================
+           RESET
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family:
+                "Segoe UI",
+                Tahoma,
+                Arial,
+                sans-serif;
+
+            background: #080808;
+            color: #ffffff;
+
+            overflow-x: hidden;
+
+            line-height: 1.7;
+        }
+
+        body.light {
+            background: #f5f5f5;
+            color: #111;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font: inherit;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        ::selection {
+            background: #e3262e;
+            color: white;
+        }
+
+
+        /* =========================================================
+           VARIABLES
+        ========================================================= */
+
+        :root {
+
+            --red: #e3262e;
+            --red-dark: #b71920;
+
+            --black: #080808;
+            --black-soft: #101010;
+            --gray: #a4a4a4;
+            --gray-dark: #1b1b1b;
+
+            --border: rgba(255,255,255,.10);
+
+            --max-width: 1250px;
+
+            --transition:
+                .35s cubic-bezier(.2,.8,.2,1);
+        }
+
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+        .container {
+            width: min(
+                calc(100% - 40px),
+                var(--max-width)
+            );
+
+            margin-inline: auto;
+        }
+
+        .section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .eyebrow {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: var(--red);
+
+            font-size: 13px;
+
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+        .eyebrow::before {
+
+            content: "";
+
+            width: 28px;
+
+            height: 2px;
+
+            background: var(--red);
+        }
+
+        .section-title {
+
+            font-size:
+                clamp(38px, 5vw, 72px);
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            max-width: 850px;
+
+            margin-bottom: 25px;
+
+            font-weight: 800;
+        }
+
+        .section-description {
+
+            color: var(--gray);
+
+            max-width: 700px;
+
+            font-size: 17px;
+
+            line-height: 2;
+        }
+
+
+        /* =========================================================
+           HEADER
+        ========================================================= */
+
+        header {
+
+            position: fixed;
+
+            top: 0;
+            left: 0;
+            right: 0;
+
+            z-index: 1000;
+
+            transition:
+                var(--transition);
+
+            background:
+                linear-gradient(
+                    to bottom,
+                    rgba(0,0,0,.75),
+                    transparent
+                );
+        }
+
+        header.scrolled {
+
+            background:
+                rgba(8,8,8,.88);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .nav {
+
+            height: 84px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 25px;
+        }
+
+        .logo {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .logo img {
+
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+        }
+
+        .logo-text {
+
+            display: flex;
+
+            flex-direction: column;
+
+            line-height: 1.1;
+        }
+
+        .logo-ar {
+
+            font-size: 18px;
+        }
+
+        .logo-en {
+
+            color: var(--red);
+
+            font-size: 10px;
+
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 28px;
+
+            list-style: none;
+        }
+
+        .nav-links a {
+
+            color: #ddd;
+
+            font-size: 14px;
+
+            transition: var(--transition);
+
+            position: relative;
+        }
+
+        .nav-links a::after {
+
+            content: "";
+
+            position: absolute;
+
+            bottom: -8px;
+
+            right: 0;
+
+            width: 0;
+
+            height: 2px;
+
+            background: var(--red);
+
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+
+            color: white;
+        }
+
+        .nav-links a:hover::after {
+
+            width: 100%;
+        }
+
+        .nav-actions {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+        }
+
+        .lang-btn {
+
+            background:
+                transparent;
+
+            border:
+                1px solid var(--border);
+
+            color: white;
+
+            border-radius: 999px;
+
+            padding: 9px 15px;
+
+            font-weight: 700;
+
+            transition: var(--transition);
+        }
+
+        .lang-btn:hover {
+
+            background: white;
+
+            color: black;
+        }
+
+        .menu-btn {
+
+            display: none;
+
+            background: transparent;
+
+            border: none;
+
+            color: white;
+
+            font-size: 26px;
+        }
+
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            align-items: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            background: #050505;
+        }
+
+        .hero-bg {
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(0,0,0,.96) 0%,
+                    rgba(0,0,0,.78) 40%,
+                    rgba(0,0,0,.25) 100%
+                );
+
+            z-index: 1;
+        }
+
+        .hero-image {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            opacity: .48;
+
+            z-index: 0;
+        }
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding-top: 80px;
+        }
+
+        .hero-kicker {
+
+            color: var(--red);
+
+            font-weight: 800;
+
+            letter-spacing: 3px;
+
+            font-size: 13px;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+
+            font-size:
+                clamp(52px, 8vw, 110px);
+
+            line-height: .95;
+
+            letter-spacing: -5px;
+
+            max-width: 900px;
+
+            margin-bottom: 30px;
+
+            font-weight: 900;
+        }
+
+        .hero h1 span {
+
+            color: var(--red);
+        }
+
+        .hero-text {
+
+            max-width: 650px;
+
+            color: #d1d1d1;
+
+            font-size: 18px;
+
+            line-height: 2;
+
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+
+            display: flex;
+
+            gap: 14px;
+
+            flex-wrap: wrap;
+        }
+
+        .btn {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            min-height: 52px;
+
+            padding:
+                0 25px;
+
+            border-radius: 999px;
+
+            border: 1px solid transparent;
+
+            font-weight: 800;
+
+            transition:
+                var(--transition);
+        }
+
+        .btn-primary {
+
+            background: var(--red);
+
+            color: white;
+
+            box-shadow:
+                0 15px 40px
+                rgba(227,38,46,.18);
+        }
+
+        .btn-primary:hover {
+
+            background: #ff3038;
+
+            transform:
+                translateY(-3px);
+        }
+
+        .btn-outline {
+
+            border-color:
+                rgba(255,255,255,.25);
+
+            color: white;
+
+            background:
+                rgba(255,255,255,.03);
+
+            backdrop-filter:
+                blur(8px);
+        }
+
+        .btn-outline:hover {
+
+            border-color: white;
+
+            background: white;
+
+            color: black;
+
+            transform:
+                translateY(-3px);
+        }
+
+        .hero-stats {
+
+            margin-top: 70px;
+
+            display: flex;
+
+            gap: 45px;
+
+            flex-wrap: wrap;
+        }
+
+        .hero-stat {
+
+            border-right:
+                1px solid var(--border);
+
+            padding-right: 25px;
+        }
+
+        [dir="ltr"] .hero-stat {
+
+            border-right: none;
+
+            border-left:
+                1px solid var(--border);
+
+            padding-right: 0;
+
+            padding-left: 25px;
+        }
+
+        .hero-stat strong {
+
+            display: block;
+
+            font-size: 26px;
+        }
+
+        .hero-stat span {
+
+            color: var(--gray);
+
+            font-size: 12px;
+        }
+
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #080808,
+                    #0d0d0d
+                );
+        }
+
+        .about-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 80px;
+
+            align-items: center;
+        }
+
+        .about-image {
+
+            position: relative;
+
+            border-radius: 4px;
+
+            overflow: hidden;
+
+            min-height: 520px;
+
+            background: #111;
+        }
+
+        .about-image img {
+
+            width: 100%;
+            height: 100%;
+
+            min-height: 520px;
+
+            object-fit: cover;
+
+            transition:
+                transform .8s ease;
+        }
+
+        .about-image:hover img {
+
+            transform: scale(1.04);
+        }
+
+        .about-image::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 18px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            pointer-events: none;
+        }
+
+        .about-copy p {
+
+            color: var(--gray);
+
+            line-height: 2.1;
+
+            margin-bottom: 25px;
+
+            font-size: 17px;
+        }
+
+        .principles {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 15px;
+
+            margin-top: 35px;
+        }
+
+        .principle {
+
+            padding: 20px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(255,255,255,.025);
+        }
+
+        .principle strong {
+
+            color: var(--red);
+
+            display: block;
+
+            font-size: 12px;
+
+            margin-bottom: 8px;
+
+            letter-spacing: 1px;
+        }
+
+        .principle span {
+
+            font-weight: 700;
+        }
+
+
+        /* =========================================================
+           SERVICES
+        ========================================================= */
+
+        .services-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2,1fr);
+
+            gap: 16px;
+
+            margin-top: 55px;
+        }
+
+        .service {
+
+            position: relative;
+
+            min-height: 330px;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #151515,
+                    #0c0c0c
+                );
+
+            padding: 35px;
+
+            overflow: hidden;
+
+            transition:
+                var(--transition);
+        }
+
+        .service:hover {
+
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(227,38,46,.5);
+        }
+
+        .service-number {
+
+            color: var(--red);
+
+            font-size: 13px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 50px;
+        }
+
+        .service h3 {
+
+            font-size: 27px;
+
+            margin-bottom: 15px;
+        }
+
+        .service p {
+
+            color: var(--gray);
+
+            max-width: 500px;
+
+            line-height: 1.9;
+        }
+
+        .service-icon {
+
+            position: absolute;
+
+            bottom: 25px;
+
+            left: 30px;
+
+            font-size: 70px;
+
+            opacity: .06;
+
+            font-weight: 900;
+        }
+
+
+        /* =========================================================
+           TECHNOLOGY
+        ========================================================= */
+
+        .technology {
+
+            background: #050505;
+        }
+
+        .tech-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1.1fr .9fr;
+
+            gap: 70px;
+
+            align-items: center;
+        }
+
+        .tech-image {
+
+            min-height: 600px;
+
+            overflow: hidden;
+
+            position: relative;
+        }
+
+        .tech-image img {
+
+            width: 100%;
+            height: 600px;
+
+            object-fit: cover;
+        }
+
+        .tech-image::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(227,38,46,.2),
+                    transparent 45%
+                );
+
+            z-index: 1;
+        }
+
+        .tech-list {
+
+            margin-top: 35px;
+
+            display: grid;
+
+            gap: 14px;
+        }
+
+        .tech-item {
+
+            display: grid;
+
+            grid-template-columns:
+                50px 1fr;
+
+            gap: 15px;
+
+            padding: 20px 0;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .tech-number {
+
+            color: var(--red);
+
+            font-weight: 900;
+        }
+
+        .tech-item h4 {
+
+            margin-bottom: 5px;
+
+            font-size: 17px;
+        }
+
+        .tech-item p {
+
+            color: var(--gray);
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           PROCESS
+        ========================================================= */
+
+        .process-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(5,1fr);
+
+            margin-top: 60px;
+
+            border-top:
+                1px solid var(--border);
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .process-step {
+
+            padding: 35px 22px;
+
+            border-left:
+                1px solid var(--border);
+
+            min-height: 240px;
+        }
+
+        [dir="ltr"] .process-step {
+
+            border-left: none;
+
+            border-right:
+                1px solid var(--border);
+        }
+
+        .process-step:last-child {
+
+            border-left: none;
+        }
+
+        [dir="ltr"] .process-step:last-child {
+
+            border-right: none;
+        }
+
+        .process-number {
+
+            color: var(--red);
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            margin-bottom: 45px;
+        }
+
+        .process-step h3 {
+
+            margin-bottom: 10px;
+        }
+
+        .process-step p {
+
+            color: var(--gray);
+
+            font-size: 14px;
+        }
+
+
+        /* =========================================================
+           SECTORS
+        ========================================================= */
+
+        .sectors-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 14px;
+
+            margin-top: 55px;
+        }
+
+        .sector {
+
+            min-height: 260px;
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+
+            align-items: flex-end;
+
+            padding: 25px;
+
+            background: #111;
+
+            border:
+                1px solid var(--border);
+        }
+
+        .sector img {
+
+            position: absolute;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            opacity: .42;
+
+            transition:
+                transform .7s ease,
+                opacity .5s ease;
+        }
+
+        .sector::after {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,.9),
+                    rgba(0,0,0,.1)
+                );
+        }
+
+        .sector:hover img {
+
+            transform: scale(1.07);
+
+            opacity: .65;
+        }
+
+        .sector-content {
+
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .sector-number {
+
+            color: var(--red);
+
+            font-size: 12px;
+
+            font-weight: 900;
+        }
+
+        .sector h3 {
+
+            font-size: 23px;
+
+            margin-top: 5px;
+        }
+
+
+        /* =========================================================
+           ACHIEVEMENTS
+        ========================================================= */
+
+        .achievements {
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #080808,
+                    #111
+                );
+        }
+
+        .geneva {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 45px;
+
+            margin-top: 55px;
+
+            border:
+                1px solid
+                rgba(227,38,46,.35);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(227,38,46,.08),
+                    rgba(255,255,255,.02)
+                );
+        }
+
+        .geneva-image {
+
+            min-height: 450px;
+
+            overflow: hidden;
+        }
+
+        .geneva-image img {
+
+            width: 100%;
+            height: 100%;
+
+            min-height: 450px;
+
+            object-fit: cover;
+        }
+
+        .geneva-content {
+
+            padding: 55px 45px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+        .geneva-badge {
+
+            color: var(--red);
+
+            font-size: 12px;
+
+            font-weight: 900;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 20px;
+        }
+
+        .geneva-content h3 {
+
+            font-size:
+                clamp(35px,5vw,65px);
+
+            line-height: 1;
+
+            margin-bottom: 18px;
+        }
+
+        .geneva-content p {
+
+            color: var(--gray);
+
+            line-height: 1.9;
+        }
+
+        .awards-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 12px;
+
+            margin-top: 14px;
+        }
+
+        .award-card {
+
+            border:
+                1px solid var(--border);
+
+            background: #101010;
+
+            overflow: hidden;
+
+            transition:
+                var(--transition);
+        }
+
+        .award-card:hover {
+
+            transform:
+                translateY(-5px);
+
+            border-color:
+                rgba(227,38,46,.45);
+        }
+
+        .award-image {
+
+            height: 190px;
+
+            overflow: hidden;
+
+            background: #161616;
+        }
+
+        .award-image img {
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .award-body {
+
+            padding: 20px;
+
+            min-height: 150px;
+        }
+
+        .award-body span {
+
+            color: var(--red);
+
+            font-size: 10px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+        .award-body h4 {
+
+            font-size: 15px;
+
+            line-height: 1.6;
+
+            margin-top: 7px;
+        }
+
+        .timeline {
+
+            margin-top: 70px;
+
+            display: grid;
+
+            gap: 0;
+        }
+
+        .timeline-item {
+
+            display: grid;
+
+            grid-template-columns:
+                120px 1fr;
+
+            gap: 30px;
+
+            padding: 28px 0;
+
+            border-top:
+                1px solid var(--border);
+        }
+
+        .timeline-year {
+
+            color: var(--red);
+
+            font-weight: 900;
+
+            font-size: 13px;
+
+            letter-spacing: 1px;
+        }
+
+        .timeline-item h4 {
+
+            margin-bottom: 5px;
+        }
+
+        .timeline-item p {
+
+            color: var(--gray);
+
+            font-size: 14px;
+
+            max-width: 800px;
+        }
+
+
+        /* =========================================================
+           MEDIA
+        ========================================================= */
+
+        .media {
+
+            padding-top: 90px;
+        }
+
+        .media-layout {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 50px;
+
+            align-items: center;
+        }
+
+        .media-image {
+
+            min-height: 450px;
+
+            overflow: hidden;
+        }
+
+        .media-image img {
+
+            width: 100%;
+            height: 450px;
+
+            object-fit: cover;
+        }
+
+        .media-copy p {
+
+            color: var(--gray);
+
+            line-height: 2;
+
+            margin-bottom: 20px;
+        }
+
+        .media-tags {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+        }
+
+        .media-tag {
+
+            border:
+                1px solid var(--border);
+
+            padding:
+                9px 15px;
+
+            font-size: 12px;
+
+            color: #ccc;
+
+            border-radius: 999px;
+        }
+
+
+        /* =========================================================
+           CONTACT
+        ========================================================= */
+
+        .contact {
+
+            background:
+                #e3262e;
+
+            color: white;
+        }
+
+        .contact .eyebrow {
+
+            color: white;
+        }
+
+        .contact .eyebrow::before {
+
+            background: white;
+        }
+
+        .contact-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                .8fr 1.2fr;
+
+            gap: 80px;
+
+            align-items: start;
+        }
+
+        .contact .section-title {
+
+            max-width: 550px;
+        }
+
+        .contact-description {
+
+            color:
+                rgba(255,255,255,.8);
+
+            line-height: 2;
+
+            max-width: 500px;
+        }
+
+        .contact-form {
+
+            background:
+                #080808;
+
+            padding: 35px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-radius: 3px;
+        }
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 14px;
+        }
+
+        .field {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+        }
+
+        .field.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+        .field label {
+
+            font-size: 12px;
+
+            color: #aaa;
+
+            font-weight: 700;
+        }
+
+        .field input,
+        .field textarea,
+        .field select {
+
+            width: 100%;
+
+            background: #111;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            color: white;
+
+            padding: 15px;
+
+            outline: none;
+
+            border-radius: 2px;
+
+            transition:
+                var(--transition);
+        }
+
+        .field textarea {
+
+            min-height: 150px;
+
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field textarea:focus,
+        .field select:focus {
+
+            border-color:
+                var(--red);
+        }
+
+        .field select option {
+
+            background: #111;
+
+            color: white;
+        }
+
+        .form-submit {
+
+            margin-top: 18px;
+
+            width: 100%;
+
+            border: none;
+
+            background: white;
+
+            color: black;
+
+            min-height: 55px;
+
+            font-weight: 900;
+
+            transition:
+                var(--transition);
+        }
+
+        .form-submit:hover {
+
+            background: #ddd;
+
+            transform:
+                translateY(-2px);
+        }
+
+        .form-submit:disabled {
+
+            opacity: .5;
+
+            cursor: wait;
+        }
+
+        .form-message {
+
+            display: none;
+
+            margin-top: 15px;
+
+            padding: 14px;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+
+        }
+
+        .form-message.success {
+
+            display: block;
+
+            background:
+                rgba(50,200,100,.12);
+
+            border:
+                1px solid
+                rgba(50,200,100,.35);
+
+            color: #8ff0ae;
+        }
+
+        .form-message.error {
+
+            display: block;
+
+            background:
+                rgba(227,38,46,.12);
+
+            border:
+                1px solid
+                rgba(227,38,46,.35);
+
+            color: #ff9ba0;
+        }
+
+        .honeypot {
+
+            display: none !important;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+
+            background: #050505;
+
+            border-top:
+                1px solid var(--border);
+
+            padding: 50px 0 25px;
+        }
+
+        .footer-top {
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            gap: 30px;
+
+            padding-bottom: 35px;
+
+            border-bottom:
+                1px solid var(--border);
+        }
+
+        .footer-brand {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+        }
+
+        .footer-brand img {
+
+            width: 48px;
+            height: 48px;
+
+            object-fit: contain;
+        }
+
+        .footer-brand strong {
+
+            display: block;
+        }
+
+        .footer-brand span {
+
+            color: var(--red);
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+        }
+
+        .socials {
+
+            display: flex;
+
+            gap: 9px;
+
+            flex-wrap: wrap;
+        }
+
+        .social {
+
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border:
+                1px solid var(--border);
+
+            border-radius: 50%;
+
+            font-size: 11px;
+
+            font-weight: 900;
+
+            transition:
+                var(--transition);
+        }
+
+        .social:hover {
+
+            background: var(--red);
+
+            border-color: var(--red);
+
+            transform:
+                translateY(-3px);
+        }
+
+        .footer-bottom {
+
+            padding-top: 25px;
+
+            color: #666;
+
+            font-size: 11px;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            gap: 20px;
+        }
+
+
+        /* =========================================================
+           REVEAL ANIMATION
+        ========================================================= */
+
+        .reveal {
+
+            opacity: 0;
+
+            transform:
+                translateY(30px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+        .reveal.visible {
+
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        .top-btn {
+
+            position: fixed;
+
+            bottom: 25px;
+
+            left: 25px;
+
+            width: 45px;
+            height: 45px;
+
+            border-radius: 50%;
+
+            border:
+                1px solid var(--border);
+
+            background:
+                rgba(10,10,10,.9);
+
+            color: white;
+
+            z-index: 999;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                var(--transition);
+        }
+
+        .top-btn.show {
+
+            opacity: 1;
+
+            pointer-events: auto;
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 1050px) {
+
+            .nav-links {
+
+                gap: 17px;
+            }
+
+            .about-grid,
+            .tech-grid,
+            .media-layout,
+            .contact-grid,
+            .geneva {
+
+                grid-template-columns: 1fr;
+            }
+
+            .services-grid {
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+
+            .process-grid {
+
+                grid-template-columns:
+                    repeat(3,1fr);
+            }
+
+            .process-step:nth-child(4),
+            .process-step:nth-child(5) {
+
+                border-top:
+                    1px solid var(--border);
+            }
+
+            .sectors-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+
+            .awards-grid {
+
+                grid-template-columns:
+                    repeat(2,1fr);
+            }
+        }
+
+
+        @media (max-width: 800px) {
+
+            .section {
+
+                padding: 85px 0;
+            }
+
+            .nav {
+
+                height: 72px;
+            }
+
+            .menu-btn {
+
+                display: block;
+            }
+
+            .nav-links {
+
+                position: absolute;
+
+                top: 72px;
+
+                right: 20px;
+                left: 20px;
+
+                display: none;
+
+                flex-direction: column;
+
+                align-items: stretch;
+
+                gap: 0;
+
+                background:
+                    rgba(10,10,10,.98);
+
+                border:
+                    1px solid var(--border);
+
+                padding: 10px;
+            }
+
+            .nav-links.active {
+
+                display: flex;
+            }
+
+            .nav-links a {
+
+                padding: 14px;
+
+                border-bottom:
+                    1px solid var(--border);
+            }
+
+            .nav-links li:last-child a {
+
+                border-bottom: none;
+            }
+
+            .hero {
+
+                min-height: 850px;
+            }
+
+            .hero h1 {
+
+                letter-spacing: -3px;
+            }
+
+            .hero-stats {
+
+                gap: 20px;
+            }
+
+            .hero-stat {
+
+                padding-right: 15px;
+            }
+
+            .principles {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .services-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .process-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .process-step {
+
+                border-left: none;
+
+                border-bottom:
+                    1px solid var(--border);
+            }
+
+            [dir="ltr"] .process-step {
+
+                border-right: none;
+            }
+
+            .process-step:last-child {
+
+                border-bottom: none;
+            }
+
+            .sectors-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .awards-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .timeline-item {
+
+                grid-template-columns:
+                    1fr;
+
+                gap: 5px;
+            }
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+            .field.full {
+
+                grid-column:
+                    auto;
+            }
+
+            .footer-top,
+            .footer-bottom {
+
+                flex-direction: column;
+
+                align-items: flex-start;
+            }
+        }
+
+
+        @media (max-width: 500px) {
+
+            .container {
+
+                width:
+                    min(
+                        calc(100% - 28px),
+                        var(--max-width)
+                    );
+            }
+
+            .hero h1 {
+
+                font-size: 52px;
+            }
+
+            .hero-text {
+
+                font-size: 15px;
+            }
+
+            .geneva-content {
+
+                padding: 35px 25px;
+            }
+
+            .contact-form {
+
+                padding: 22px;
+            }
+        }
+
+    </style>
+
 </head>
+
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- =========================================================
+     HEADER
+========================================================= -->
 
-<header class="navbar">
+<header id="header">
 
-<div class="container nav-inner">
+    <div class="container">
 
-<a href="#home" class="logo">
+        <nav class="nav">
 
-<img src="assets/mukafih-logo.png" alt="مكافح">
+            <a href="#home"
+               class="logo">
 
-<div class="logo-text">
-<strong>مكافح</strong>
-<span>MUKAFIH • FIRE PROTECTION</span>
-</div>
+                <img
+                    src="assets/mukafih-logo.png"
+                    alt="MUKAFIH Logo">
 
-</a>
+                <span class="logo-text">
 
-<nav class="nav-links" id="navLinks">
+                    <span class="logo-ar">
+                        مكافح
+                    </span>
 
-<a href="#about" data-ar="من نحن" data-en="About Us">من نحن</a>
+                    <span class="logo-en">
+                        MUKAFIH
+                    </span>
 
-<a href="#solutions" data-ar="الحلول" data-en="Solutions">الحلول</a>
+                </span>
 
-<a href="#technology" data-ar="التقنية" data-en="Technology">التقنية</a>
+            </a>
 
-<a href="#sectors" data-ar="القطاعات" data-en="Sectors">القطاعات</a>
 
-<a href="#awards" data-ar="الإنجازات" data-en="Achievements">الإنجازات</a>
+            <ul class="nav-links"
+                id="navLinks">
 
-<a href="#contact" data-ar="تواصل معنا" data-en="Contact">تواصل معنا</a>
+                <li>
+                    <a href="#home"
+                       data-ar="الرئيسية"
+                       data-en="Home">
+                        الرئيسية
+                    </a>
+                </li>
 
-</nav>
+                <li>
+                    <a href="#about"
+                       data-ar="من نحن"
+                       data-en="About">
+                        من نحن
+                    </a>
+                </li>
 
-<div class="nav-actions">
+                <li>
+                    <a href="#solutions"
+                       data-ar="الحلول"
+                       data-en="Solutions">
+                        الحلول
+                    </a>
+                </li>
 
-<button class="lang-btn" id="languageBtn" onclick="toggleLanguage()">
-EN
-</button>
+                <li>
+                    <a href="#technology"
+                       data-ar="التقنية"
+                       data-en="Technology">
+                        التقنية
+                    </a>
+                </li>
 
-<button class="mobile-menu" onclick="toggleMenu()">
-☰
-</button>
+                <li>
+                    <a href="#sectors"
+                       data-ar="القطاعات"
+                       data-en="Sectors">
+                        القطاعات
+                    </a>
+                </li>
 
-</div>
+                <li>
+                    <a href="#achievements"
+                       data-ar="الإنجازات"
+                       data-en="Achievements">
+                        الإنجازات
+                    </a>
+                </li>
 
-</div>
+                <li>
+                    <a href="#contact"
+                       data-ar="تواصل معنا"
+                       data-en="Contact">
+                        تواصل معنا
+                    </a>
+                </li>
+
+            </ul>
+
+
+            <div class="nav-actions">
+
+                <button
+                    class="lang-btn"
+                    id="languageButton"
+                    type="button">
+                    EN
+                </button>
+
+                <button
+                    class="menu-btn"
+                    id="menuButton"
+                    type="button"
+                    aria-label="Menu">
+                    ☰
+                </button>
+
+            </div>
+
+        </nav>
+
+    </div>
+
 </header>
 
 
-<!-- ================= HERO ================= -->
+<!-- =========================================================
+     HERO
+========================================================= -->
 
 <main>
 
-<section class="hero" id="home">
+<section
+    class="hero"
+    id="home">
 
-<div class="container hero-grid">
+    <img
+        class="hero-image"
+        src="assets/hero-drone-truck.jpg"
+        alt="MUKAFIH Smart Fire Protection"
+        loading="eager">
 
-<div class="hero-content">
-
-<div class="eyebrow">
-
-<span class="eyebrow-dot"></span>
-
-<span
-data-ar="تقنيات ذكية للحماية من الحرائق"
-data-en="Smart Fire Protection Technology">
-تقنيات ذكية للحماية من الحرائق
-</span>
-
-</div>
-
-<h1
-data-ar="نبتكر اليوم<br>لنحمي <span>الغد</span>"
-data-en="Innovating Today<br>to Protect <span>Tomorrow</span>">
-
-نبتكر اليوم<br>لنحمي <span>الغد</span>
-
-</h1>
-
-<p class="hero-description"
-data-ar="مكافح شركة تقنية ناشئة تطور حلولًا ذكية ومتقدمة للحماية من الحرائق، تجمع بين الذكاء الاصطناعي والطائرات بدون طيار والتقنيات الحديثة لتعزيز سرعة الاستجابة ورفع مستوى السلامة."
-data-en="Mukafih is a technology startup developing intelligent fire protection solutions that combine artificial intelligence, autonomous drones and advanced technologies to improve response and safety.">
-
-مكافح شركة تقنية ناشئة تطور حلولًا ذكية ومتقدمة للحماية من الحرائق، تجمع بين الذكاء الاصطناعي والطائرات بدون طيار والتقنيات الحديثة لتعزيز سرعة الاستجابة ورفع مستوى السلامة.
-
-</p>
-
-<div class="hero-buttons">
-
-<a href="#contact" class="btn btn-primary"
-data-ar="تواصل معنا"
-data-en="Contact Us">
-تواصل معنا
-</a>
-
-<a href="#technology" class="btn btn-outline"
-data-ar="اكتشف تقنيتنا"
-data-en="Explore Our Technology">
-اكتشف تقنيتنا
-</a>
-
-</div>
-
-</div>
+    <div class="hero-bg"></div>
 
 
-<div class="hero-visual">
+    <div class="container">
 
-<div class="hero-image-wrap">
+        <div class="hero-content reveal">
 
-<img
-src="assets/hero-drone-truck.png"
-class="hero-image"
-alt="Mukafih Fire Protection Technology">
+            <div class="hero-kicker"
+                 data-ar="FIRE PROTECTION • AI • AUTONOMOUS TECHNOLOGY"
+                 data-en="FIRE PROTECTION • AI • AUTONOMOUS TECHNOLOGY">
 
-<div class="hero-tech-card">
+                FIRE PROTECTION • AI • AUTONOMOUS TECHNOLOGY
 
-<small
-data-ar="منظومة الحماية الذكية"
-data-en="Smart Protection System">
-منظومة الحماية الذكية
-</small>
+            </div>
 
-<strong>AI • DRONE • FIRE SAFETY</strong>
 
-<div class="tech-line">
-<span></span>
-</div>
+            <h1
+                data-ar="نبتكر اليوم<br>لنحمي <span>الغد.</span>"
+                data-en="Innovate Today.<br>Protect <span>Tomorrow.</span>">
 
-</div>
+                نبتكر اليوم<br>
+                لنحمي <span>الغد.</span>
 
-</div>
+            </h1>
 
-</div>
 
-</div>
+            <p
+                class="hero-text"
+                data-ar="نطور حلولًا متقدمة للحماية من الحرائق تجمع بين الهندسة والذكاء الاصطناعي والطائرات المسيّرة والأتمتة، لمساعدة المنشآت على الرصد المبكر واتخاذ القرار والاستجابة بذكاء."
+                data-en="We develop advanced fire protection solutions that combine engineering, artificial intelligence, drones and automation to help facilities detect risks early, make smarter decisions and respond faster.">
+
+                نطور حلولًا متقدمة للحماية من الحرائق تجمع بين الهندسة والذكاء الاصطناعي والطائرات المسيّرة والأتمتة، لمساعدة المنشآت على الرصد المبكر واتخاذ القرار والاستجابة بذكاء.
+
+            </p>
+
+
+            <div class="hero-buttons">
+
+                <a
+                    href="#solutions"
+                    class="btn btn-primary"
+                    data-ar="اكتشف حلولنا"
+                    data-en="Explore Solutions">
+
+                    اكتشف حلولنا
+
+                </a>
+
+                <a
+                    href="#contact"
+                    class="btn btn-outline"
+                    data-ar="تواصل مع مكافح"
+                    data-en="Contact MUKAFIH">
+
+                    تواصل مع مكافح
+
+                </a>
+
+            </div>
+
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+
+                    <strong>AI</strong>
+
+                    <span
+                        data-ar="ذكاء اصطناعي"
+                        data-en="Artificial Intelligence">
+                        ذكاء اصطناعي
+                    </span>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <strong>3D</strong>
+
+                    <span
+                        data-ar="خرائط ثلاثية الأبعاد"
+                        data-en="3D Mapping">
+                        خرائط ثلاثية الأبعاد
+                    </span>
+
+                </div>
+
+
+                <div class="hero-stat">
+
+                    <strong>24/7</strong>
+
+                    <span
+                        data-ar="رصد واستجابة"
+                        data-en="Monitoring & Response">
+                        رصد واستجابة
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= STATS ================= -->
+<!-- =========================================================
+     ABOUT
+========================================================= -->
 
-<div class="stats">
+<section
+    class="section about"
+    id="about">
 
-<div class="container stats-grid">
+    <div class="container">
 
-<div class="stat">
-<strong>AI</strong>
-<span data-ar="ذكاء اصطناعي" data-en="Artificial Intelligence">
-ذكاء اصطناعي
-</span>
-</div>
+        <div class="about-grid">
 
-<div class="stat">
-<strong>3D</strong>
-<span data-ar="خرائط ثلاثية الأبعاد" data-en="3D Mapping">
-خرائط ثلاثية الأبعاد
-</span>
-</div>
+            <div class="about-image reveal">
 
-<div class="stat">
-<strong>UWB</strong>
-<span data-ar="تموضع داخلي متقدم" data-en="Advanced Indoor Positioning">
-تموضع داخلي متقدم
-</span>
-</div>
+                <img
+                    src="assets/drone.jpg"
+                    alt="MUKAFIH Drone"
+                    loading="lazy">
 
-<div class="stat">
-<strong>24/7</strong>
-<span data-ar="استعداد للحماية" data-en="Protection Readiness">
-استعداد للحماية
-</span>
-</div>
-
-</div>
-
-</div>
+            </div>
 
 
-<!-- ================= ABOUT ================= -->
+            <div class="about-copy reveal">
 
-<section id="about">
-
-<div class="container about-grid">
-
-<div class="about-card">
-
-<img src="assets/technology.png" alt="Mukafih">
-
-</div>
+                <div
+                    class="eyebrow"
+                    data-ar="من نحن"
+                    data-en="ABOUT US">
+                    من نحن
+                </div>
 
 
-<div class="about-content">
+                <h2
+                    class="section-title"
+                    data-ar="الحماية لم تعد تنتظر وقوع الحريق."
+                    data-en="Protection should not wait for the fire.">
 
-<div class="section-head">
+                    الحماية لم تعد
+                    تنتظر وقوع الحريق.
 
-<div class="section-kicker"
-data-ar="من نحن"
-data-en="ABOUT US">
-من نحن
-</div>
+                </h2>
 
-<h2 class="section-title"
-data-ar="حماية أكثر ذكاءً تبدأ من التقنية."
-data-en="Smarter protection starts with technology.">
-حماية أكثر ذكاءً تبدأ من التقنية.
-</h2>
 
-</div>
+                <p
+                    data-ar="نحن في مكافح نؤمن بقوة الابتكار والتقنية في تطوير مستقبل أكثر أمانًا. نعمل على تقديم حلول متقدمة للحماية من الحرائق مصممة للبيئات التي تتطلب سرعة الاستجابة وذكاء القرار."
+                    data-en="At MUKAFIH, we believe in the power of innovation and technology to build a safer future. We develop advanced fire protection solutions for environments where fast response and intelligent decision-making matter.">
 
-<p
-data-ar="نحن في مكافح نؤمن أن مستقبل الحماية من الحرائق يعتمد على الجمع بين الخبرة والتقنية والقدرة على الاستجابة في الوقت المناسب. لذلك نعمل على تطوير حلول متقدمة تساعد المنشآت على اكتشاف المخاطر والتعامل معها بذكاء وكفاءة."
-data-en="At Mukafih, we believe the future of fire protection lies in combining expertise, technology and timely response. We develop advanced solutions that help facilities detect risks and respond intelligently and efficiently.">
+                    نحن في مكافح نؤمن بقوة الابتكار والتقنية في تطوير مستقبل أكثر أمانًا. نعمل على تقديم حلول متقدمة للحماية من الحرائق مصممة للبيئات التي تتطلب سرعة الاستجابة وذكاء القرار.
 
-نحن في مكافح نؤمن أن مستقبل الحماية من الحرائق يعتمد على الجمع بين الخبرة والتقنية والقدرة على الاستجابة في الوقت المناسب. لذلك نعمل على تطوير حلول متقدمة تساعد المنشآت على اكتشاف المخاطر والتعامل معها بذكاء وكفاءة.
+                </p>
 
-</p>
 
-<div class="check-list">
+                <p
+                    data-ar="نمـزج بين الأنظمة الهندسية والتقنيات الذكية لنمنح المنشآت مستوى أعلى من الرصد والتحليل والاستجابة."
+                    data-en="We combine engineering systems with intelligent technologies to provide facilities with a higher level of monitoring, analysis and response.">
 
-<div class="check">
-<div class="check-icon">✓</div>
-<span data-ar="حلول تقنية متقدمة للحماية من الحرائق"
-data-en="Advanced fire protection technology">
-حلول تقنية متقدمة للحماية من الحرائق
-</span>
-</div>
+                    نمـزج بين الأنظمة الهندسية والتقنيات الذكية لنمنح المنشآت مستوى أعلى من الرصد والتحليل والاستجابة.
 
-<div class="check">
-<div class="check-icon">✓</div>
-<span data-ar="دمج الذكاء الاصطناعي مع أنظمة الحماية"
-data-en="AI-powered protection systems">
-دمج الذكاء الاصطناعي مع أنظمة الحماية
-</span>
-</div>
+                </p>
 
-<div class="check">
-<div class="check-icon">✓</div>
-<span data-ar="تركيز على البيئات الصناعية والمنشآت عالية الخطورة"
-data-en="Designed for industrial and high-risk environments">
-تركيز على البيئات الصناعية والمنشآت عالية الخطورة
-</span>
-</div>
 
-<div class="check">
-<div class="check-icon">✓</div>
-<span data-ar="ابتكار سعودي برؤية مستقبلية"
-data-en="Saudi innovation with a future-focused vision">
-ابتكار سعودي برؤية مستقبلية
-</span>
-</div>
+                <div class="principles">
 
-</div>
+                    <div class="principle">
 
-</div>
+                        <strong>01</strong>
 
-</div>
+                        <span
+                            data-ar="الابتكار"
+                            data-en="Innovation">
+                            الابتكار
+                        </span>
+
+                    </div>
+
+
+                    <div class="principle">
+
+                        <strong>02</strong>
+
+                        <span
+                            data-ar="السلامة"
+                            data-en="Safety">
+                            السلامة
+                        </span>
+
+                    </div>
+
+
+                    <div class="principle">
+
+                        <strong>03</strong>
+
+                        <span
+                            data-ar="الاستجابة الذكية"
+                            data-en="Smart Response">
+                            الاستجابة الذكية
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= SOLUTIONS ================= -->
+<!-- =========================================================
+     SOLUTIONS
+========================================================= -->
 
-<section class="services" id="solutions">
+<section
+    class="section"
+    id="solutions">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-head">
+        <div class="eyebrow"
+             data-ar="حلول مكافح"
+             data-en="MUKAFIH SOLUTIONS">
 
-<div class="section-kicker"
-data-ar="حلولنا"
-data-en="OUR SOLUTIONS">
-حلولنا
-</div>
+            حلول مكافح
 
-<h2 class="section-title"
-data-ar="من الكشف المبكر إلى الاستجابة الذكية."
-data-en="From early detection to intelligent response.">
-من الكشف المبكر إلى الاستجابة الذكية.
-</h2>
-
-<p class="section-description"
-data-ar="نطور منظومة متكاملة تساعد المنشآت على رفع مستوى السلامة والاستجابة للمخاطر باستخدام تقنيات حديثة."
-data-en="We develop integrated solutions that help facilities improve safety and respond to risks using advanced technologies.">
-نطور منظومة متكاملة تساعد المنشآت على رفع مستوى السلامة والاستجابة للمخاطر باستخدام تقنيات حديثة.
-</p>
-
-</div>
+        </div>
 
 
-<div class="services-grid">
+        <h2
+            class="section-title reveal"
+            data-ar="حلول مصممة<br>للخطر الحقيقي."
+            data-en="Solutions designed<br>for real-world risk.">
 
-<div class="service-card">
+            حلول مصممة
+            <br>
+            للخطر الحقيقي.
 
-<div class="service-number">01</div>
-
-<div class="service-icon">◉</div>
-
-<h3
-data-ar="الكشف الذكي عن الحرائق"
-data-en="Intelligent Fire Detection">
-الكشف الذكي عن الحرائق
-</h3>
-
-<p
-data-ar="استخدام تقنيات الاستشعار والرؤية الحاسوبية والتصوير الحراري للمساعدة في التعرف على مؤشرات الحريق في وقت مبكر."
-data-en="Using sensing technologies, computer vision and thermal imaging to identify fire indicators at an early stage.">
-استخدام تقنيات الاستشعار والرؤية الحاسوبية والتصوير الحراري للمساعدة في التعرف على مؤشرات الحريق في وقت مبكر.
-</p>
-
-</div>
+        </h2>
 
 
-<div class="service-card">
+        <p
+            class="section-description reveal"
+            data-ar="من الكشف المبكر إلى الاستجابة، نطور منظومة حماية تتناسب مع طبيعة المنشأة ودرجة المخاطر فيها."
+            data-en="From early detection to response, we develop protection systems tailored to the facility, its environment and its risk profile.">
 
-<div class="service-number">02</div>
+            من الكشف المبكر إلى الاستجابة، نطور منظومة حماية تتناسب مع طبيعة المنشأة ودرجة المخاطر فيها.
 
-<div class="service-icon">✦</div>
-
-<h3
-data-ar="الطائرات بدون طيار"
-data-en="Firefighting Drones">
-الطائرات بدون طيار
-</h3>
-
-<p
-data-ar="طائرات ذكية مصممة للعمل داخل البيئات التي قد تشكل خطرًا على فرق الاستجابة، مع قدرات استكشاف ومراقبة واستجابة."
-data-en="Intelligent drones designed to operate in environments that may be hazardous for response teams, providing inspection, monitoring and response capabilities.">
-طائرات ذكية مصممة للعمل داخل البيئات التي قد تشكل خطرًا على فرق الاستجابة، مع قدرات استكشاف ومراقبة واستجابة.
-</p>
-
-</div>
+        </p>
 
 
-<div class="service-card">
+        <div class="services-grid">
 
-<div class="service-number">03</div>
+            <article class="service reveal">
 
-<div class="service-icon">AI</div>
+                <div class="service-number">
+                    01
+                </div>
 
-<h3
-data-ar="الذكاء الاصطناعي والرؤية الحاسوبية"
-data-en="AI & Computer Vision">
-الذكاء الاصطناعي والرؤية الحاسوبية
-</h3>
+                <h3
+                    data-ar="الحماية الذكية بالطائرات المسيّرة"
+                    data-en="Smart Drone Fire Protection">
 
-<p
-data-ar="تحليل البيانات والصور والقراءات الحسية للمساعدة في اتخاذ قرارات أسرع وأكثر دقة أثناء حالات الطوارئ."
-data-en="Analyzing visual, sensor and environmental data to support faster and more informed decisions during emergencies.">
-تحليل البيانات والصور والقراءات الحسية للمساعدة في اتخاذ قرارات أسرع وأكثر دقة أثناء حالات الطوارئ.
-</p>
+                    الحماية الذكية بالطائرات المسيّرة
 
-</div>
+                </h3>
 
-</div>
+                <p
+                    data-ar="حلول جوية ذكية للعمل داخل البيئات الصناعية والمنشآت المغلقة، للمساعدة في اكتشاف الحريق والتحقق منه والاستجابة المبكرة."
+                    data-en="Smart aerial solutions designed for industrial and enclosed environments to support fire detection, verification and early response.">
 
-</div>
+                    حلول جوية ذكية للعمل داخل البيئات الصناعية والمنشآت المغلقة، للمساعدة في اكتشاف الحريق والتحقق منه والاستجابة المبكرة.
+
+                </p>
+
+                <div class="service-icon">
+                    DRONE
+                </div>
+
+            </article>
+
+
+            <article class="service reveal">
+
+                <div class="service-number">
+                    02
+                </div>
+
+                <h3
+                    data-ar="أنظمة مكافحة الحرائق"
+                    data-en="Fire Protection Systems">
+
+                    أنظمة مكافحة الحرائق
+
+                </h3>
+
+                <p
+                    data-ar="حلول حماية متقدمة مصممة وفق طبيعة كل منشأة واحتياجاتها التشغيلية."
+                    data-en="Advanced protection solutions designed around the specific nature and operational requirements of each facility.">
+
+                    حلول حماية متقدمة مصممة وفق طبيعة كل منشأة واحتياجاتها التشغيلية.
+
+                </p>
+
+                <div class="service-icon">
+                    FIRE
+                </div>
+
+            </article>
+
+
+            <article class="service reveal">
+
+                <div class="service-number">
+                    03
+                </div>
+
+                <h3
+                    data-ar="الذكاء الاصطناعي والكشف المبكر"
+                    data-en="AI & Early Detection">
+
+                    الذكاء الاصطناعي والكشف المبكر
+
+                </h3>
+
+                <p
+                    data-ar="توظيف الرؤية الحاسوبية والذكاء الاصطناعي لتحليل البيئة واكتشاف مؤشرات الخطر."
+                    data-en="Using computer vision and artificial intelligence to analyze environments and identify potential risk indicators.">
+
+                    توظيف الرؤية الحاسوبية والذكاء الاصطناعي لتحليل البيئة واكتشاف مؤشرات الخطر.
+
+                </p>
+
+                <div class="service-icon">
+                    AI
+                </div>
+
+            </article>
+
+
+            <article class="service reveal">
+
+                <div class="service-number">
+                    04
+                </div>
+
+                <h3
+                    data-ar="حلول المنشآت الصناعية"
+                    data-en="Industrial Facility Solutions">
+
+                    حلول المنشآت الصناعية
+
+                </h3>
+
+                <p
+                    data-ar="منظومات حماية للبيئات التي تتطلب مستويات عالية من المراقبة والاستجابة والسلامة."
+                    data-en="Protection solutions for environments requiring advanced levels of monitoring, response and safety.">
+
+                    منظومات حماية للبيئات التي تتطلب مستويات عالية من المراقبة والاستجابة والسلامة.
+
+                </p>
+
+                <div class="service-icon">
+                    3D
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= TECHNOLOGY ================= -->
+<!-- =========================================================
+     TECHNOLOGY
+========================================================= -->
 
-<section id="technology">
+<section
+    class="section technology"
+    id="technology">
 
-<div class="container tech-grid">
+    <div class="container">
 
-<div class="tech-image">
+        <div class="tech-grid">
 
-<img src="assets/drone.png" alt="Mukafih Smart Firefighting Drone">
+            <div class="tech-image reveal">
 
-</div>
+                <img
+                    src="assets/technology.jpg"
+                    alt="MUKAFIH Technology"
+                    loading="lazy">
 
-
-<div>
-
-<div class="section-head">
-
-<div class="section-kicker"
-data-ar="التقنية"
-data-en="TECHNOLOGY">
-التقنية
-</div>
-
-<h2 class="section-title"
-data-ar="مصممة للبيئات التي لا يكفي فيها الحل التقليدي."
-data-en="Built for environments where traditional protection is not enough.">
-مصممة للبيئات التي لا يكفي فيها الحل التقليدي.
-</h2>
-
-<p class="section-description"
-data-ar="تعتمد منظومة مكافح على مجموعة من التقنيات التي تمكّن الأنظمة من العمل في البيئات الداخلية المعقدة حتى في ظروف يصعب فيها الاعتماد على GPS."
-data-en="Mukafih's system combines multiple technologies designed to operate in complex indoor environments where GPS-based positioning may not be available.">
-تعتمد منظومة مكافح على مجموعة من التقنيات التي تمكّن الأنظمة من العمل في البيئات الداخلية المعقدة حتى في ظروف يصعب فيها الاعتماد على GPS.
-</p>
-
-</div>
+            </div>
 
 
-<div class="tech-features">
+            <div class="reveal">
 
-<div class="tech-feature">
+                <div class="eyebrow"
+                     data-ar="التقنية"
+                     data-en="TECHNOLOGY">
 
-<div class="tech-feature-icon">3D</div>
+                    التقنية
 
-<div>
-
-<h4
-data-ar="الخرائط ثلاثية الأبعاد"
-data-en="3D Mapping">
-الخرائط ثلاثية الأبعاد
-</h4>
-
-<p
-data-ar="بناء وفهم البيئة الداخلية للمساعدة على الملاحة وتحديد موقع الخطر."
-data-en="Building and understanding indoor environments to support navigation and hazard localization.">
-بناء وفهم البيئة الداخلية للمساعدة على الملاحة وتحديد موقع الخطر.
-</p>
-
-</div>
-
-</div>
+                </div>
 
 
-<div class="tech-feature">
+                <h2
+                    class="section-title"
+                    data-ar="عندما تصبح كل ثانية مهمة."
+                    data-en="When every second matters.">
 
-<div class="tech-feature-icon">◎</div>
+                    عندما تصبح
+                    <br>
+                    كل ثانية مهمة.
 
-<div>
-
-<h4>SLAM + UWB</h4>
-
-<p
-data-ar="تقنيات للتموضع والملاحة في البيئات الداخلية المعقدة."
-data-en="Positioning and navigation technologies for complex indoor environments.">
-تقنيات للتموضع والملاحة في البيئات الداخلية المعقدة.
-</p>
-
-</div>
-
-</div>
+                </h2>
 
 
-<div class="tech-feature">
+                <p
+                    class="section-description"
+                    data-ar="صممت منظومة مكافح لتعمل في البيئات التي قد تكون فيها الاستجابة البشرية صعبة أو محفوفة بالمخاطر."
+                    data-en="MUKAFIH is designed for environments where human intervention can be difficult, dangerous or too slow.">
 
-<div class="tech-feature-icon">IR</div>
+                    صممت منظومة مكافح لتعمل في البيئات التي قد تكون فيها الاستجابة البشرية صعبة أو محفوفة بالمخاطر.
 
-<div>
-
-<h4
-data-ar="التصوير الحراري"
-data-en="Thermal Imaging">
-التصوير الحراري
-</h4>
-
-<p
-data-ar="الاستفادة من البيانات الحرارية للمساعدة في تقييم مؤشرات الحرارة ومصادر الخطر."
-data-en="Using thermal data to support heat assessment and hazard identification.">
-الاستفادة من البيانات الحرارية للمساعدة في تقييم مؤشرات الحرارة ومصادر الخطر.
-</p>
-
-</div>
-
-</div>
+                </p>
 
 
-<div class="tech-feature">
+                <div class="tech-list">
 
-<div class="tech-feature-icon">AI</div>
+                    <div class="tech-item">
 
-<div>
+                        <div class="tech-number">
+                            01
+                        </div>
 
-<h4
-data-ar="تحقق متعدد المستشعرات"
-data-en="Multi-Sensor Verification">
-تحقق متعدد المستشعرات
-</h4>
+                        <div>
 
-<p
-data-ar="دمج البيانات الحرارية والبصرية وبيانات العمق للمساعدة على تقليل الإنذارات الكاذبة."
-data-en="Combining thermal, visual and depth data to help reduce false alarms.">
-دمج البيانات الحرارية والبصرية وبيانات العمق للمساعدة على تقليل الإنذارات الكاذبة.
-</p>
+                            <h4
+                                data-ar="رصد وتحليل ذكي"
+                                data-en="Intelligent Monitoring & Analysis">
+                                رصد وتحليل ذكي
+                            </h4>
 
-</div>
+                            <p
+                                data-ar="مراقبة البيئة وتحليل البيانات لاكتشاف مؤشرات الخطر."
+                                data-en="Monitoring environments and analyzing data to identify risk indicators.">
+                                مراقبة البيئة وتحليل البيانات لاكتشاف مؤشرات الخطر.
+                            </p>
 
-</div>
+                        </div>
 
-</div>
+                    </div>
 
-</div>
 
-</div>
+                    <div class="tech-item">
+
+                        <div class="tech-number">
+                            02
+                        </div>
+
+                        <div>
+
+                            <h4
+                                data-ar="خرائط ثلاثية الأبعاد"
+                                data-en="3D Indoor Mapping">
+                                خرائط ثلاثية الأبعاد
+                            </h4>
+
+                            <p
+                                data-ar="بناء تصور ثلاثي الأبعاد للبيئات الداخلية لدعم تحديد موقع الخطر."
+                                data-en="Creating 3D representations of indoor environments to support precise risk localization.">
+                                بناء تصور ثلاثي الأبعاد للبيئات الداخلية لدعم تحديد موقع الخطر.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tech-item">
+
+                        <div class="tech-number">
+                            03
+                        </div>
+
+                        <div>
+
+                            <h4
+                                data-ar="الرؤية الحاسوبية"
+                                data-en="Computer Vision">
+                                الرؤية الحاسوبية
+                            </h4>
+
+                            <p
+                                data-ar="تحليل بصري ذكي لدعم اكتشاف الأحداث ومؤشرات الخطر."
+                                data-en="Intelligent visual analysis to support event and risk detection.">
+                                تحليل بصري ذكي لدعم اكتشاف الأحداث ومؤشرات الخطر.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tech-item">
+
+                        <div class="tech-number">
+                            04
+                        </div>
+
+                        <div>
+
+                            <h4
+                                data-ar="ملاحة في البيئات المغلقة"
+                                data-en="Indoor Navigation">
+                                ملاحة في البيئات المغلقة
+                            </h4>
+
+                            <p
+                                data-ar="تقنيات تساعد على الحركة داخل البيئات التي لا يتوفر فيها GPS."
+                                data-en="Navigation technologies designed for environments where GPS may not be available.">
+                                تقنيات تساعد على الحركة داخل البيئات التي لا يتوفر فيها GPS.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= PROCESS ================= -->
+<!-- =========================================================
+     PROCESS
+========================================================= -->
 
-<section class="process">
+<section
+    class="section"
+    id="process">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-head">
+        <div class="eyebrow"
+             data-ar="كيف تعمل مكافح؟"
+             data-en="HOW MUKAFIH WORKS?">
 
-<div class="section-kicker"
-data-ar="كيف تعمل المنظومة؟"
-data-en="HOW IT WORKS">
-كيف تعمل المنظومة؟
-</div>
+            كيف تعمل مكافح؟
 
-<h2 class="section-title"
-data-ar="استجابة ذكية تبدأ من لحظة اكتشاف الخطر."
-data-en="Intelligent response starts the moment a risk is detected.">
-استجابة ذكية تبدأ من لحظة اكتشاف الخطر.
-</h2>
-
-</div>
+        </div>
 
 
-<div class="process-grid">
+        <h2
+            class="section-title reveal"
+            data-ar="من الرصد إلى الاستجابة."
+            data-en="From detection to response.">
 
-<div class="process-step">
+            من الرصد
+            <br>
+            إلى الاستجابة.
 
-<div class="process-number">01</div>
-
-<h3
-data-ar="اكتشاف"
-data-en="Detect">
-اكتشاف
-</h3>
-
-<p
-data-ar="تلتقط المستشعرات مؤشرات الحرارة أو الدخان أو الخطر."
-data-en="Sensors identify heat, smoke or other fire indicators.">
-تلتقط المستشعرات مؤشرات الحرارة أو الدخان أو الخطر.
-</p>
-
-</div>
+        </h2>
 
 
-<div class="process-step">
+        <div class="process-grid">
 
-<div class="process-number">02</div>
+            <div class="process-step reveal">
 
-<h3
-data-ar="تحليل"
-data-en="Analyze">
-تحليل
-</h3>
+                <div class="process-number">
+                    01
+                </div>
 
-<p
-data-ar="يتم تحليل البيانات باستخدام أنظمة الذكاء الاصطناعي والرؤية الحاسوبية."
-data-en="AI and computer vision systems analyze the collected data.">
-يتم تحليل البيانات باستخدام أنظمة الذكاء الاصطناعي والرؤية الحاسوبية.
-</p>
+                <h3
+                    data-ar="الرصد"
+                    data-en="Detection">
+                    الرصد
+                </h3>
 
-</div>
+                <p
+                    data-ar="مراقبة البيئة واكتشاف مؤشرات الخطر."
+                    data-en="Monitoring the environment and identifying risk indicators.">
+                    مراقبة البيئة واكتشاف مؤشرات الخطر.
+                </p>
 
-
-<div class="process-step">
-
-<div class="process-number">03</div>
-
-<h3
-data-ar="تحديد الموقع"
-data-en="Locate">
-تحديد الموقع
-</h3>
-
-<p
-data-ar="تساعد الخرائط والأنظمة الملاحية على تحديد موقع الخطر داخل المنشأة."
-data-en="Mapping and navigation systems help locate the hazard inside the facility.">
-تساعد الخرائط والأنظمة الملاحية على تحديد موقع الخطر داخل المنشأة.
-</p>
-
-</div>
+            </div>
 
 
-<div class="process-step">
+            <div class="process-step reveal">
 
-<div class="process-number">04</div>
+                <div class="process-number">
+                    02
+                </div>
 
-<h3
-data-ar="الاستجابة"
-data-en="Respond">
-الاستجابة
-</h3>
+                <h3
+                    data-ar="التحليل"
+                    data-en="Analysis">
+                    التحليل
+                </h3>
 
-<p
-data-ar="تتجه المنظومة نحو موقع الخطر لدعم الاستجابة الأولية وتقليل زمن الوصول."
-data-en="The system moves toward the hazard to support initial response and reduce response time.">
-تتجه المنظومة نحو موقع الخطر لدعم الاستجابة الأولية وتقليل زمن الوصول.
-</p>
+                <p
+                    data-ar="تحليل البيانات وتحديد طبيعة الحدث."
+                    data-en="Analyzing data and determining the nature of the event.">
+                    تحليل البيانات وتحديد طبيعة الحدث.
+                </p>
 
-</div>
+            </div>
 
-</div>
 
-</div>
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    03
+                </div>
+
+                <h3
+                    data-ar="تحديد الموقع"
+                    data-en="Localization">
+                    تحديد الموقع
+                </h3>
+
+                <p
+                    data-ar="تحديد موقع الخطر داخل المنشأة."
+                    data-en="Locating the risk within the facility.">
+                    تحديد موقع الخطر داخل المنشأة.
+                </p>
+
+            </div>
+
+
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    04
+                </div>
+
+                <h3
+                    data-ar="الاستجابة"
+                    data-en="Response">
+                    الاستجابة
+                </h3>
+
+                <p
+                    data-ar="تفعيل منظومة الاستجابة المناسبة."
+                    data-en="Activating the appropriate response system.">
+                    تفعيل منظومة الاستجابة المناسبة.
+                </p>
+
+            </div>
+
+
+            <div class="process-step reveal">
+
+                <div class="process-number">
+                    05
+                </div>
+
+                <h3
+                    data-ar="الحماية"
+                    data-en="Protection">
+                    الحماية
+                </h3>
+
+                <p
+                    data-ar="المساعدة في الحد من انتشار الخطر وتقليل المخاطر."
+                    data-en="Helping limit risk escalation and reduce potential damage.">
+                    المساعدة في الحد من انتشار الخطر وتقليل المخاطر.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= SECTORS ================= -->
+<!-- =========================================================
+     SECTORS
+========================================================= -->
 
-<section id="sectors">
+<section
+    class="section"
+    id="sectors">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-head">
+        <div class="eyebrow"
+             data-ar="القطاعات"
+             data-en="SECTORS">
 
-<div class="section-kicker"
-data-ar="القطاعات"
-data-en="INDUSTRIES">
-القطاعات
-</div>
+            القطاعات
 
-<h2 class="section-title"
-data-ar="حلول مصممة للبيئات عالية الخطورة."
-data-en="Solutions designed for high-risk environments.">
-حلول مصممة للبيئات عالية الخطورة.
-</h2>
-
-</div>
+        </div>
 
 
-<div class="sectors-grid">
+        <h2
+            class="section-title reveal"
+            data-ar="حماية تتكيف مع بيئتك."
+            data-en="Protection adapted to your environment.">
 
-<div class="sector">
+            حماية تتكيف
+            <br>
+            مع بيئتك.
 
-<img src="assets/factory.jpg" alt="Factories">
-
-<div class="sector-content">
-
-<h3
-data-ar="المصانع والمنشآت الصناعية"
-data-en="Factories & Industrial Facilities">
-المصانع والمنشآت الصناعية
-</h3>
-
-<p
-data-ar="مراقبة واستجابة في البيئات التشغيلية المعقدة."
-data-en="Monitoring and response in complex operational environments.">
-مراقبة واستجابة في البيئات التشغيلية المعقدة.
-</p>
-
-</div>
-
-</div>
+        </h2>
 
 
-<div class="sector">
+        <p
+            class="section-description reveal"
+            data-ar="حلول موجهة للبيئات التي تتطلب مستويات متقدمة من المراقبة والاستجابة."
+            data-en="Solutions for environments that require advanced monitoring and response capabilities.">
 
-<img src="assets/warehouse.jpg" alt="Warehouses">
+            حلول موجهة للبيئات التي تتطلب مستويات متقدمة من المراقبة والاستجابة.
 
-<div class="sector-content">
-
-<h3
-data-ar="المستودعات"
-data-en="Warehouses">
-المستودعات
-</h3>
-
-<p
-data-ar="الوصول إلى المناطق المرتفعة والعميقة التي يصعب الوصول إليها."
-data-en="Accessing elevated and difficult-to-reach areas.">
-الوصول إلى المناطق المرتفعة والعميقة التي يصعب الوصول إليها.
-</p>
-
-</div>
-
-</div>
+        </p>
 
 
-<div class="sector">
+        <div class="sectors-grid">
 
-<img src="assets/data-center.jpg" alt="Data Centers">
+            <article class="sector reveal">
 
-<div class="sector-content">
+                <img
+                    src="assets/factory.jpg"
+                    alt="Factories"
+                    loading="lazy">
 
-<h3
-data-ar="مراكز البيانات"
-data-en="Data Centers">
-مراكز البيانات
-</h3>
+                <div class="sector-content">
 
-<p
-data-ar="استجابة أولية مع مراعاة حساسية المعدات."
-data-en="Initial response while considering sensitive equipment.">
-استجابة أولية مع مراعاة حساسية المعدات.
-</p>
+                    <div class="sector-number">
+                        01
+                    </div>
 
-</div>
+                    <h3
+                        data-ar="المصانع"
+                        data-en="Factories">
+                        المصانع
+                    </h3>
 
-</div>
+                </div>
+
+            </article>
 
 
-<div class="sector">
+            <article class="sector reveal">
 
-<img src="assets/electrical-room.jpg" alt="Electrical Rooms">
+                <img
+                    src="assets/warehouse.jpg"
+                    alt="Warehouses"
+                    loading="lazy">
 
-<div class="sector-content">
+                <div class="sector-content">
 
-<h3
-data-ar="غرف الكهرباء والمحطات"
-data-en="Electrical Rooms & Substations">
-غرف الكهرباء والمحطات
-</h3>
+                    <div class="sector-number">
+                        02
+                    </div>
 
-<p
-data-ar="حلول للبيئات المغلقة والمعقدة التي لا يتوفر فيها GPS."
-data-en="Solutions for enclosed and complex environments without GPS.">
-حلول للبيئات المغلقة والمعقدة التي لا يتوفر فيها GPS.
-</p>
+                    <h3
+                        data-ar="المستودعات"
+                        data-en="Warehouses">
+                        المستودعات
+                    </h3>
 
-</div>
+                </div>
 
-</div>
+            </article>
 
-</div>
 
-</div>
+            <article class="sector reveal">
+
+                <img
+                    src="assets/electrical-room.jpg"
+                    alt="Electrical Facilities"
+                    loading="lazy">
+
+                <div class="sector-content">
+
+                    <div class="sector-number">
+                        03
+                    </div>
+
+                    <h3
+                        data-ar="غرف الكهرباء والمحطات"
+                        data-en="Electrical Facilities">
+                        غرف الكهرباء والمحطات
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="sector reveal">
+
+                <img
+                    src="assets/data-center.jpg"
+                    alt="Data Centers"
+                    loading="lazy">
+
+                <div class="sector-content">
+
+                    <div class="sector-number">
+                        04
+                    </div>
+
+                    <h3
+                        data-ar="مراكز البيانات"
+                        data-en="Data Centers">
+                        مراكز البيانات
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="sector reveal">
+
+                <img
+                    src="assets/tunnel.jpg"
+                    alt="Tunnels"
+                    loading="lazy">
+
+                <div class="sector-content">
+
+                    <div class="sector-number">
+                        05
+                    </div>
+
+                    <h3
+                        data-ar="الأنفاق والمرافق المغلقة"
+                        data-en="Tunnels & Enclosed Facilities">
+                        الأنفاق والمرافق المغلقة
+                    </h3>
+
+                </div>
+
+            </article>
+
+
+            <article class="sector reveal">
+
+                <img
+                    src="assets/industrial-facility.jpg"
+                    alt="High Risk Facilities"
+                    loading="lazy">
+
+                <div class="sector-content">
+
+                    <div class="sector-number">
+                        06
+                    </div>
+
+                    <h3
+                        data-ar="المنشآت عالية الخطورة"
+                        data-en="High-Risk Facilities">
+                        المنشآت عالية الخطورة
+                    </h3>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= WHY US ================= -->
+<!-- =========================================================
+     ACHIEVEMENTS
+========================================================= -->
 
-<section class="why">
+<section
+    class="section achievements"
+    id="achievements">
 
-<div class="container why-grid">
+    <div class="container">
 
-<div>
+        <div class="eyebrow"
+             data-ar="الإنجازات والتكريمات"
+             data-en="ACHIEVEMENTS & RECOGNITION">
 
-<div class="section-kicker"
-data-ar="لماذا مكافح؟"
-data-en="WHY MUKAFIH">
-لماذا مكافح؟
-</div>
+            الإنجازات والتكريمات
 
-<h2 class="section-title"
-data-ar="لأن السلامة لا تحتمل الانتظار."
-data-en="Because safety cannot wait.">
-لأن السلامة لا تحتمل الانتظار.
-</h2>
-
-<p class="section-description"
-data-ar="نحن لا نضيف التقنية لمجرد التقنية؛ بل نوظفها لحل مشكلة حقيقية في الاستجابة للحرائق وحماية الأرواح والأصول."
-data-en="We do not use technology for technology's sake. We apply it to solve real fire-response challenges and protect people and assets.">
-نحن لا نضيف التقنية لمجرد التقنية؛ بل نوظفها لحل مشكلة حقيقية في الاستجابة للحرائق وحماية الأرواح والأصول.
-</p>
-
-</div>
+        </div>
 
 
-<div class="why-list">
+        <h2
+            class="section-title reveal"
+            data-ar="إنجازات تصنع الثقة."
+            data-en="Achievements that build trust.">
 
-<div class="why-item">
+            إنجازات
+            <br>
+            تصنع الثقة.
 
-<div class="why-item-number">01</div>
-
-<div>
-
-<h3
-data-ar="ابتكار تقني"
-data-en="Technology-driven innovation">
-ابتكار تقني
-</h3>
-
-<p
-data-ar="دمج الذكاء الاصطناعي والطائرات بدون طيار وتقنيات الاستشعار."
-data-en="Combining AI, drones and advanced sensing technologies.">
-دمج الذكاء الاصطناعي والطائرات بدون طيار وتقنيات الاستشعار.
-</p>
-
-</div>
-
-</div>
+        </h2>
 
 
-<div class="why-item">
+        <p
+            class="section-description reveal"
+            data-ar="من الاحتضان والتأهل إلى التقدير الدولي، نواصل بناء رحلة مكافح بخطوات موثقة."
+            data-en="From incubation and national competitions to international recognition, MUKAFIH continues to build its journey through documented milestones.">
 
-<div class="why-item-number">02</div>
+            من الاحتضان والتأهل إلى التقدير الدولي، نواصل بناء رحلة مكافح بخطوات موثقة.
 
-<div>
-
-<h3
-data-ar="حلول مخصصة"
-data-en="Purpose-built solutions">
-حلول مخصصة
-</h3>
-
-<p
-data-ar="تصميم المنظومة وفق طبيعة البيئة والمخاطر الموجودة داخل المنشأة."
-data-en="Solutions designed around the facility's environment and risk profile.">
-تصميم المنظومة وفق طبيعة البيئة والمخاطر الموجودة داخل المنشأة.
-</p>
-
-</div>
-
-</div>
+        </p>
 
 
-<div class="why-item">
+        <!-- GENEVA -->
 
-<div class="why-item-number">03</div>
+        <div class="geneva reveal">
 
-<div>
+            <div class="geneva-image">
 
-<h3
-data-ar="استجابة أسرع"
-data-en="Faster response">
-استجابة أسرع
-</h3>
+                <img
+                    src="assets/award-geneva.jpg"
+                    alt="Geneva Gold Medal"
+                    loading="lazy">
 
-<p
-data-ar="الهدف هو تقليل الزمن بين اكتشاف الخطر والوصول إليه."
-data-en="Our goal is to reduce the time between detecting a hazard and reaching it.">
-الهدف هو تقليل الزمن بين اكتشاف الخطر والوصول إليه.
-</p>
-
-</div>
-
-</div>
+            </div>
 
 
-<div class="why-item">
+            <div class="geneva-content">
 
-<div class="why-item-number">04</div>
+                <div class="geneva-badge">
 
-<div>
+                    51ST GENEVA INTERNATIONAL EXHIBITION OF INVENTIONS
 
-<h3
-data-ar="ابتكار سعودي"
-data-en="Saudi innovation">
-ابتكار سعودي
-</h3>
+                </div>
 
-<p
-data-ar="نبني تقنية محلية قادرة على المنافسة والتوسع مستقبلًا."
-data-en="Building local technology with the potential to compete and scale.">
-نبني تقنية محلية قادرة على المنافسة والتوسع مستقبلًا.
-</p>
 
-</div>
+                <h3
+                    data-ar="الميدالية الذهبية"
+                    data-en="Gold Medal">
 
-</div>
+                    الميدالية الذهبية
 
-</div>
+                </h3>
 
-</div>
+
+                <p
+                    data-ar="مع مرتبة الشرف — تكريم دولي يبرز قيمة الابتكار الذي تقدمه مكافح."
+                    data-en="With Honors — an international recognition highlighting the innovation developed by MUKAFIH.">
+
+                    مع مرتبة الشرف — تكريم دولي يبرز قيمة الابتكار الذي تقدمه مكافح.
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- SPECIAL AWARDS -->
+
+        <div class="awards-grid">
+
+            <article class="award-card reveal">
+
+                <div class="award-image">
+
+                    <img
+                        src="assets/award-hkust.jpg"
+                        alt="HKUST Award"
+                        loading="lazy">
+
+                </div>
+
+                <div class="award-body">
+
+                    <span>
+                        SPECIAL AWARD
+                    </span>
+
+                    <h4>
+                        THE HONG KONG UNIVERSITY OF SCIENCE AND TECHNOLOGY
+                    </h4>
+
+                </div>
+
+            </article>
+
+
+            <article class="award-card reveal">
+
+                <div class="award-image">
+
+                    <img
+                        src="assets/award-french.jpg"
+                        alt="French Inventors Federation"
+                        loading="lazy">
+
+                </div>
+
+                <div class="award-body">
+
+                    <span>
+                        SPECIAL RECOGNITION
+                    </span>
+
+                    <h4
+                        data-ar="شهادة وميدالية — الاتحاد الفرنسي للمخترعين"
+                        data-en="Certificate & Medal — French Inventors Federation">
+
+                        شهادة وميدالية — الاتحاد الفرنسي للمخترعين
+
+                    </h4>
+
+                </div>
+
+            </article>
+
+
+            <article class="award-card reveal">
+
+                <div class="award-image">
+
+                    <img
+                        src="assets/award-malaysia.jpg"
+                        alt="Malaysia Delegation Award"
+                        loading="lazy">
+
+                </div>
+
+                <div class="award-body">
+
+                    <span>
+                        SPECIAL AWARD
+                    </span>
+
+                    <h4
+                        data-ar="الجائزة الخاصة — وفد ماليزيا"
+                        data-en="Special Award — Malaysia Delegation">
+
+                        الجائزة الخاصة — وفد ماليزيا
+
+                    </h4>
+
+                </div>
+
+            </article>
+
+
+            <article class="award-card reveal">
+
+                <div class="award-image">
+
+                    <img
+                        src="assets/award-qassim.jpg"
+                        alt="Qassim University Award"
+                        loading="lazy">
+
+                </div>
+
+                <div class="award-body">
+
+                    <span>
+                        SPECIAL AWARD
+                    </span>
+
+                    <h4
+                        data-ar="جائزة خاصة — جامعة القصيم"
+                        data-en="Special Award — Qassim University">
+
+                        جائزة خاصة — جامعة القصيم
+
+                    </h4>
+
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <!-- TIMELINE -->
+
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    2025
+                </div>
+
+                <div>
+
+                    <h4
+                        data-ar="برنامج الاحتضان — CEIES"
+                        data-en="Incubation Program — CEIES">
+
+                        برنامج الاحتضان — CEIES
+
+                    </h4>
+
+                    <p
+                        data-ar="برنامج الاحتضان في مركز التميز البحثي للأنظمة الهندسية والكهربائية بجامعة الملك عبدالعزيز، خلال الفترة من يناير إلى ديسمبر 2025."
+                        data-en="Incubation at the Center of Excellence for Engineering Systems and Electrical Engineering at King Abdulaziz University from January to December 2025.">
+
+                        برنامج الاحتضان في مركز التميز البحثي للأنظمة الهندسية والكهربائية بجامعة الملك عبدالعزيز، خلال الفترة من يناير إلى ديسمبر 2025.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    2026
+                </div>
+
+                <div>
+
+                    <h4
+                        data-ar="إنجاز السعودية — التأهل للنهائيات"
+                        data-en="Enjaz Saudi Arabia — Finalist">
+
+                        إنجاز السعودية — التأهل للنهائيات
+
+                    </h4>
+
+                    <p
+                        data-ar="التأهل إلى نهائيات مسابقة فكرة التابعة لإنجاز السعودية 2026."
+                        data-en="Qualified for the finals of the Idea Competition by Enjaz Saudi Arabia 2026.">
+
+                        التأهل إلى نهائيات مسابقة فكرة التابعة لإنجاز السعودية 2026.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    2026
+                </div>
+
+                <div>
+
+                    <h4
+                        data-ar="أفضل 20 مشروعًا رياديًا"
+                        data-en="Top 20 Entrepreneurial Projects">
+
+                        أفضل 20 مشروعًا رياديًا
+
+                    </h4>
+
+                    <p
+                        data-ar="كنا ضمن أفضل 20 مشروعًا رياديًا مشاركًا في المؤتمر الأول للابتكار وريادة الأعمال بجامعة الملك عبدالعزيز."
+                        data-en="Selected among the Top 20 entrepreneurial projects participating in the First Innovation & Entrepreneurship Conference at King Abdulaziz University.">
+
+                        كنا ضمن أفضل 20 مشروعًا رياديًا مشاركًا في المؤتمر الأول للابتكار وريادة الأعمال بجامعة الملك عبدالعزيز.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    MILESTONE
+                </div>
+
+                <div>
+
+                    <h4
+                        data-ar="غرفة جدة — أسبوع ريادة الأعمال"
+                        data-en="Jeddah Chamber — Entrepreneurship Week">
+
+                        غرفة جدة — أسبوع ريادة الأعمال
+
+                    </h4>
+
+                    <p
+                        data-ar="المشاركة ضمن فعاليات أسبوع ريادة الأعمال في غرفة جدة."
+                        data-en="Participation in Entrepreneurship Week activities at Jeddah Chamber.">
+
+                        المشاركة ضمن فعاليات أسبوع ريادة الأعمال في غرفة جدة.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="timeline-item reveal">
+
+                <div class="timeline-year">
+                    MILESTONE
+                </div>
+
+                <div>
+
+                    <h4
+                        data-ar="معرض رواد الأعمال — كلية العلوم"
+                        data-en="Entrepreneurs Exhibition — College of Science">
+
+                        معرض رواد الأعمال — كلية العلوم
+
+                    </h4>
+
+                    <p
+                        data-ar="المشاركة في معرض رواد الأعمال بكلية العلوم."
+                        data-en="Participation in the Entrepreneurs Exhibition at the College of Science.">
+
+                        المشاركة في معرض رواد الأعمال بكلية العلوم.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </section>
 
 
-<!-- ================= AWARDS ================= -->
+<!-- =========================================================
+     MEDIA / OFFICIAL PRESENCE
+========================================================= -->
 
-<section class="awards" id="awards">
+<section
+    class="section media">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-head">
+        <div class="media-layout">
 
-<div class="section-kicker"
-data-ar="الإنجازات والجوائز"
-data-en="ACHIEVEMENTS & AWARDS">
-الإنجازات والجوائز
-</div>
+            <div class="media-image reveal">
 
-<h2 class="section-title"
-data-ar="إنجازات تعكس رحلة الابتكار."
-data-en="Milestones that reflect our innovation journey.">
-إنجازات تعكس رحلة الابتكار.
-</h2>
+                <img
+                    src="assets/achievement-prince-saud.jpg"
+                    alt="MUKAFIH Official Meeting"
+                    loading="lazy">
 
-<p class="section-description"
-data-ar="من الاحتضان والبرامج الريادية إلى المشاركات والمعارض والجوائز الدولية."
-data-en="From incubation and entrepreneurship programs to exhibitions and international awards.">
-من الاحتضان والبرامج الريادية إلى المشاركات والمعارض والجوائز الدولية.
-</p>
+            </div>
 
-</div>
 
+            <div class="media-copy reveal">
 
-<div class="awards-grid">
+                <div class="eyebrow"
+                     data-ar="حضور رسمي وإعلامي"
+                     data-en="OFFICIAL & MEDIA PRESENCE">
 
+                    حضور رسمي وإعلامي
 
-<div class="award-card" onclick="openModal('assets/award-geneva.jpg')">
+                </div>
 
-<div class="award-image">
-<img src="assets/award-geneva.jpg" alt="Geneva Gold Medal">
-</div>
 
-<div class="award-info">
+                <h2
+                    class="section-title"
+                    data-ar="من الابتكار إلى الحضور."
+                    data-en="From innovation to impact.">
 
-<small>INTERNATIONAL</small>
+                    من الابتكار
+                    <br>
+                    إلى الحضور.
 
-<h3
-data-ar="معرض جنيف الدولي للاختراعات"
-data-en="Geneva International Exhibition of Inventions">
-معرض جنيف الدولي للاختراعات
-</h3>
+                </h2>
 
-<p
-data-ar="الميدالية الذهبية مع مرتبة الشرف."
-data-en="Gold Medal with Honors.">
-الميدالية الذهبية مع مرتبة الشرف.
-</p>
 
-</div>
+                <p
+                    data-ar="حظيت مكافح بحضور وتمثيل في مناسبات وبرامج تعكس رحلتها في الابتكار وريادة الأعمال، من بينها لقاء صاحب السمو الأمير سعود بن جلوي محافظ جدة عقب الفوز في معرض جنيف الدولي للاختراعات، بحضور رئيس جامعة الملك عبدالعزيز د. طريف الأعمى."
+                    data-en="MUKAFIH has been represented across events and programs reflecting its innovation and entrepreneurship journey, including a meeting with His Highness Prince Saud bin Jalawi, Governor of Jeddah, following the Geneva International Exhibition of Inventions, in the presence of the President of King Abdulaziz University, Dr. Tareef Al-Aama.">
 
-</div>
+                    حظيت مكافح بحضور وتمثيل في مناسبات وبرامج تعكس رحلتها في الابتكار وريادة الأعمال، من بينها لقاء صاحب السمو الأمير سعود بن جلوي محافظ جدة عقب الفوز في معرض جنيف الدولي للاختراعات، بحضور رئيس جامعة الملك عبدالعزيز د. طريف الأعمى.
 
+                </p>
 
-<div class="award-card" onclick="openModal('assets/award-hkust.jpg')">
 
-<div class="award-image">
-<img src="assets/award-hkust.jpg" alt="HKUST Award">
-</div>
+                <div class="media-tags">
 
-<div class="award-info">
+                    <span class="media-tag"
+                          data-ar="ملتقى تمكين المستقبل"
+                          data-en="Future Empowerment Forum">
+                        ملتقى تمكين المستقبل
+                    </span>
 
-<small>SPECIAL AWARD</small>
+                    <span class="media-tag"
+                          data-ar="إذاعة الرياض"
+                          data-en="Riyadh Radio">
+                        إذاعة الرياض
+                    </span>
 
-<h3>
-THE HONG KONG UNIVERSITY OF SCIENCE AND TECHNOLOGY
-</h3>
+                    <span class="media-tag"
+                          data-ar="Hack4Earth"
+                          data-en="Hack4Earth">
+                        Hack4Earth
+                    </span>
 
-<p
-data-ar="جائزة خاصة عن الابتكار."
-data-en="Special award recognizing the innovation.">
-جائزة خاصة عن الابتكار.
-</p>
+                    <span class="media-tag"
+                          data-ar="غرفة جدة"
+                          data-en="Jeddah Chamber">
+                        غرفة جدة
+                    </span>
 
-</div>
+                </div>
 
-</div>
+            </div>
 
+        </div>
 
-<div class="award-card" onclick="openModal('assets/award-french.jpg')">
-
-<div class="award-image">
-<img src="assets/award-french.jpg" alt="French Inventors Federation">
-</div>
-
-<div class="award-info">
-
-<small>SPECIAL AWARD</small>
-
-<h3
-data-ar="الاتحاد الفرنسي للمخترعين"
-data-en="French Inventors Federation">
-الاتحاد الفرنسي للمخترعين
-</h3>
-
-<p
-data-ar="شهادة وميدالية، مع الإشارة إلى الاختراع ضمن أفضل الاختراعات في المعرض."
-data-en="Certificate and medal, with recognition among the leading inventions at the exhibition.">
-شهادة وميدالية، مع الإشارة إلى الاختراع ضمن أفضل الاختراعات في المعرض.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="award-card" onclick="openModal('assets/award-malaysia.jpg')">
-
-<div class="award-image">
-<img src="assets/award-malaysia.jpg" alt="Malaysia Special Award">
-</div>
-
-<div class="award-info">
-
-<small>SPECIAL AWARD</small>
-
-<h3
-data-ar="جائزة الوفد الماليزي"
-data-en="Malaysia Delegation Special Award">
-جائزة الوفد الماليزي
-</h3>
-
-<p
-data-ar="جائزة خاصة ضمن معرض جنيف الدولي."
-data-en="Special award presented during the Geneva exhibition.">
-جائزة خاصة ضمن معرض جنيف الدولي.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="award-card" onclick="openModal('assets/award-qassim.jpg')">
-
-<div class="award-image">
-<img src="assets/award-qassim.jpg" alt="Qassim University Award">
-</div>
-
-<div class="award-info">
-
-<small>SPECIAL AWARD</small>
-
-<h3
-data-ar="جامعة القصيم"
-data-en="Qassim University">
-جامعة القصيم
-</h3>
-
-<p
-data-ar="جائزة خاصة تقديرًا للابتكار."
-data-en="Special award recognizing the innovation.">
-جائزة خاصة تقديرًا للابتكار.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="award-card" onclick="openModal('assets/enjaz.jpg')">
-
-<div class="award-image">
-<img src="assets/enjaz.jpg" alt="Enjaz Saudi">
-</div>
-
-<div class="award-info">
-
-<small>2026</small>
-
-<h3
-data-ar="إنجاز السعودية"
-data-en="Enjaz Saudi">
-إنجاز السعودية
-</h3>
-
-<p
-data-ar="التأهل إلى نهائيات مسابقة فكرة."
-data-en="Finalist in the Idea Competition.">
-التأهل إلى نهائيات مسابقة فكرة.
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
+    </div>
 
 </section>
 
 
-<!-- ================= TIMELINE ================= -->
+<!-- =========================================================
+     CONTACT
+========================================================= -->
 
-<section>
+<section
+    class="section contact"
+    id="contact">
 
-<div class="container">
+    <div class="container">
 
-<div class="section-head">
+        <div class="contact-grid">
 
-<div class="section-kicker"
-data-ar="رحلتنا"
-data-en="OUR JOURNEY">
-رحلتنا
-</div>
+            <div class="reveal">
 
-<h2 class="section-title"
-data-ar="من الفكرة إلى الابتكار."
-data-en="From idea to innovation.">
-من الفكرة إلى الابتكار.
-</h2>
+                <div class="eyebrow"
+                     data-ar="تواصل معنا"
+                     data-en="CONTACT US">
 
-</div>
+                    تواصل معنا
 
+                </div>
 
-<div class="timeline">
 
+                <h2
+                    class="section-title"
+                    data-ar="هل منشأتك مستعدة للخطر قبل وقوعه؟"
+                    data-en="Is your facility ready before risk occurs?">
 
-<div class="timeline-item">
+                    هل منشأتك مستعدة
+                    <br>
+                    للخطر قبل وقوعه؟
 
-<div class="timeline-dot"></div>
+                </h2>
 
-<div class="timeline-year">2025</div>
 
-<h3
-data-ar="برنامج الاحتضان في CEIES"
-data-en="CEIES Incubation Program">
-برنامج الاحتضان في CEIES
-</h3>
+                <p
+                    class="contact-description"
+                    data-ar="نحن هنا لمناقشة احتياجات منشأتك وفرص التعاون وبناء مستوى حماية أكثر ذكاءً."
+                    data-en="We are here to discuss your facility's needs, explore collaboration opportunities and build a smarter level of protection.">
 
-<p
-data-ar="الاحتضان في مركز التميز البحثي للأنظمة الهندسية والكهربائية بجامعة الملك عبدالعزيز خلال عام 2025."
-data-en="Incubation at the Center of Excellence in Engineering and Electrical Systems at King Abdulaziz University during 2025.">
-الاحتضان في مركز التميز البحثي للأنظمة الهندسية والكهربائية بجامعة الملك عبدالعزيز خلال عام 2025.
-</p>
+                    نحن هنا لمناقشة احتياجات منشأتك وفرص التعاون وبناء مستوى حماية أكثر ذكاءً.
 
-</div>
+                </p>
 
+            </div>
 
-<div class="timeline-item">
 
-<div class="timeline-dot"></div>
+            <!-- REAL CONTACT FORM -->
 
-<div class="timeline-year">2026</div>
+            <form
+                id="contactForm"
+                class="contact-form reveal"
+                action="https://formsubmit.co/ajax/mkafh2024@gmail.com"
+                method="POST">
 
-<h3
-data-ar="إنجاز السعودية"
-data-en="Enjaz Saudi">
-إنجاز السعودية
-</h3>
+                <!-- Email subject -->
 
-<p
-data-ar="التأهل إلى نهائيات مسابقة فكرة التابعة لإنجاز السعودية."
-data-en="Reached the finals of Enjaz Saudi's Idea Competition.">
-التأهل إلى نهائيات مسابقة فكرة التابعة لإنجاز السعودية.
-</p>
+                <input
+                    type="hidden"
+                    name="_subject"
+                    value="رسالة جديدة من موقع مكافح | New MUKAFIH Website Inquiry">
 
-</div>
 
+                <!-- Email template -->
 
-<div class="timeline-item">
+                <input
+                    type="hidden"
+                    name="_template"
+                    value="table">
 
-<div class="timeline-dot"></div>
 
-<div class="timeline-year">2026</div>
+                <!-- Reply-To -->
 
-<h3
-data-ar="المؤتمر الأول للابتكار وريادة الأعمال"
-data-en="First Innovation & Entrepreneurship Conference">
-المؤتمر الأول للابتكار وريادة الأعمال
-</h3>
+                <input
+                    type="hidden"
+                    name="_replyto"
+                    value="">
 
-<p
-data-ar="التواجد ضمن أفضل 20 مشروعًا رياديًا والمشاركة في المعرض."
-data-en="Selected among the Top 20 entrepreneurial projects and participated in the exhibition.">
-التواجد ضمن أفضل 20 مشروعًا رياديًا والمشاركة في المعرض.
-</p>
 
-</div>
+                <!-- Anti-spam honeypot -->
 
+                <input
+                    type="text"
+                    name="_honey"
+                    class="honeypot"
+                    tabindex="-1"
+                    autocomplete="off">
 
-<div class="timeline-item">
 
-<div class="timeline-dot"></div>
+                <div class="form-grid">
 
-<div class="timeline-year">2026</div>
 
-<h3
-data-ar="معرض جنيف الدولي للاختراعات"
-data-en="Geneva International Exhibition of Inventions">
-معرض جنيف الدولي للاختراعات
-</h3>
+                    <div class="field">
 
-<p
-data-ar="الحصول على الميدالية الذهبية مع مرتبة الشرف، إضافة إلى ثلاث جوائز خاصة دولية وجائزة خاصة من جامعة القصيم."
-data-en="Won a Gold Medal with Honors, along with international special awards and a special award from Qassim University.">
-الحصول على الميدالية الذهبية مع مرتبة الشرف، إضافة إلى ثلاث جوائز خاصة دولية وجائزة خاصة من جامعة القصيم.
-</p>
+                        <label
+                            for="name"
+                            data-ar="الاسم الكامل"
+                            data-en="Full Name">
 
-</div>
+                            الاسم الكامل
 
+                        </label>
 
-<div class="timeline-item">
+                        <input
+                            id="name"
+                            type="text"
+                            name="name"
+                            required
+                            autocomplete="name"
+                            placeholder="الاسم الكامل">
 
-<div class="timeline-dot"></div>
+                    </div>
 
-<div class="timeline-year">2026</div>
 
-<h3
-data-ar="تمثيل مركز الابتكار وريادة الأعمال"
-data-en="Representing the Innovation & Entrepreneurship Center">
-تمثيل مركز الابتكار وريادة الأعمال
-</h3>
+                    <div class="field">
 
-<p
-data-ar="تمثيل مركز الابتكار وريادة الأعمال بجامعة الملك عبدالعزيز في ملتقى تمكين المستقبل."
-data-en="Represented King Abdulaziz University's Innovation and Entrepreneurship Center at the Future Empowerment Forum.">
-تمثيل مركز الابتكار وريادة الأعمال بجامعة الملك عبدالعزيز في ملتقى تمكين المستقبل.
-</p>
+                        <label
+                            for="email"
+                            data-ar="البريد الإلكتروني"
+                            data-en="Email Address">
 
-</div>
+                            البريد الإلكتروني
 
-</div>
+                        </label>
 
-</div>
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            required
+                            autocomplete="email"
+                            placeholder="name@example.com">
 
-</section>
+                    </div>
 
 
-<!-- ================= MEDIA ================= -->
+                    <div class="field">
 
-<section class="services">
+                        <label
+                            for="company"
+                            data-ar="الشركة / المنشأة"
+                            data-en="Company / Facility">
 
-<div class="container">
+                            الشركة / المنشأة
 
-<div class="section-head">
+                        </label>
 
-<div class="section-kicker"
-data-ar="الحضور والظهور"
-data-en="MEDIA & PRESENCE">
-الحضور والظهور
-</div>
+                        <input
+                            id="company"
+                            type="text"
+                            name="company"
+                            autocomplete="organization"
+                            placeholder="اسم الشركة">
 
-<h2 class="section-title"
-data-ar="من الابتكار إلى المجتمع."
-data-en="Taking innovation beyond the lab.">
-من الابتكار إلى المجتمع.
-</h2>
+                    </div>
 
-</div>
 
+                    <div class="field">
 
-<div class="media-grid">
+                        <label
+                            for="sector"
+                            data-ar="القطاع"
+                            data-en="Sector">
 
+                            القطاع
 
-<div class="media-card">
+                        </label>
 
-<span>01</span>
+                        <select
+                            id="sector"
+                            name="sector">
 
-<h3
-data-ar="لقاء صاحب السمو الأمير سعود بن جلوي"
-data-en="Meeting with HRH Prince Saud bin Jalawi">
-لقاء صاحب السمو الأمير سعود بن جلوي
-</h3>
+                            <option
+                                value=""
+                                data-ar="اختر القطاع"
+                                data-en="Select sector">
+                                اختر القطاع
+                            </option>
 
-<p
-data-ar="لقاء بعد الفوز في معرض جنيف الدولي للاختراعات، بحضور رئيس جامعة الملك عبدالعزيز."
-data-en="A meeting following the Geneva achievement, attended by the President of King Abdulaziz University.">
-لقاء بعد الفوز في معرض جنيف الدولي للاختراعات، بحضور رئيس جامعة الملك عبدالعزيز.
-</p>
+                            <option
+                                value="Factories"
+                                data-ar="المصانع"
+                                data-en="Factories">
+                                المصانع
+                            </option>
 
-</div>
+                            <option
+                                value="Warehouses"
+                                data-ar="المستودعات"
+                                data-en="Warehouses">
+                                المستودعات
+                            </option>
 
+                            <option
+                                value="Data Centers"
+                                data-ar="مراكز البيانات"
+                                data-en="Data Centers">
+                                مراكز البيانات
+                            </option>
 
-<div class="media-card">
+                            <option
+                                value="Electrical Facilities"
+                                data-ar="الكهرباء والمحطات"
+                                data-en="Electrical Facilities">
+                                الكهرباء والمحطات
+                            </option>
 
-<span>02</span>
+                            <option
+                                value="Other"
+                                data-ar="أخرى"
+                                data-en="Other">
+                                أخرى
+                            </option>
 
-<h3
-data-ar="إذاعة الرياض"
-data-en="Riyadh Radio">
-إذاعة الرياض
-</h3>
+                        </select>
 
-<p
-data-ar="المشاركة في برنامج فرسان التمكين."
-data-en="Participation in the Faris Al-Tamkeen program.">
-المشاركة في برنامج فرسان التمكين.
-</p>
+                    </div>
 
-</div>
 
+                    <div class="field full">
 
-<div class="media-card">
+                        <label
+                            for="message"
+                            data-ar="الرسالة"
+                            data-en="Message">
 
-<span>03</span>
+                            الرسالة
 
-<h3
-data-ar="أسبوع ريادة الأعمال – غرفة جدة"
-data-en="Entrepreneurship Week – Jeddah Chamber">
-أسبوع ريادة الأعمال – غرفة جدة
-</h3>
+                        </label>
 
-<p
-data-ar="المشاركة ضمن فعاليات أسبوع ريادة الأعمال."
-data-en="Participation in Entrepreneurship Week activities.">
-المشاركة ضمن فعاليات أسبوع ريادة الأعمال.
-</p>
+                        <textarea
+                            id="message"
+                            name="message"
+                            required
+                            placeholder="اكتب رسالتك هنا..."></textarea>
 
-</div>
+                    </div>
 
-</div>
+                </div>
 
-</div>
 
-</section>
+                <button
+                    id="submitButton"
+                    class="form-submit"
+                    type="submit"
+                    data-ar="إرسال الرسالة"
+                    data-en="Send Message">
 
+                    إرسال الرسالة
 
-<!-- ================= CONTACT ================= -->
+                </button>
 
-<section class="contact" id="contact">
 
-<div class="container contact-grid">
+                <div
+                    id="formMessage"
+                    class="form-message"
+                    role="status"
+                    aria-live="polite">
+                </div>
 
+            </form>
 
-<div class="contact-info">
+        </div>
 
-<div class="section-kicker"
-data-ar="تواصل معنا"
-data-en="CONTACT US">
-تواصل معنا
-</div>
-
-<h2 class="section-title"
-data-ar="لنبدأ محادثة تصنع فرقًا."
-data-en="Let's start a conversation that makes a difference.">
-لنبدأ محادثة تصنع فرقًا.
-</h2>
-
-<p
-data-ar="نحن هنا للإجابة على استفساراتكم ومناقشة فرص التعاون والشراكات. يسعدنا تواصلكم معنا."
-data-en="We are here to answer your questions and discuss opportunities for collaboration and partnerships.">
-نحن هنا للإجابة على استفساراتكم ومناقشة فرص التعاون والشراكات. يسعدنا تواصلكم معنا.
-</p>
-
-
-<div class="socials">
-
-<a class="social"
-href="https://x.com/muk_fh"
-target="_blank">
-X
-</a>
-
-<a class="social"
-href="https://www.instagram.com/muk.fh"
-target="_blank">
-Instagram
-</a>
-
-<a class="social"
-href="https://www.linkedin.com/company/mokfeh/"
-target="_blank">
-LinkedIn
-</a>
-
-<a class="social"
-href="https://www.tiktok.com/@muk.fh"
-target="_blank">
-TikTok
-</a>
-
-</div>
-
-</div>
-
-
-<form class="contact-form" onsubmit="sendMessage(event)">
-
-<div class="form-group">
-
-<label
-data-ar="الاسم الكامل"
-data-en="Full Name">
-الاسم الكامل
-</label>
-
-<input
-type="text"
-required
-placeholder="الاسم الكامل"
-data-placeholder-ar="الاسم الكامل"
-data-placeholder-en="Full Name">
-
-</div>
-
-
-<div class="form-group">
-
-<label
-data-ar="البريد الإلكتروني"
-data-en="Email">
-البريد الإلكتروني
-</label>
-
-<input
-type="email"
-required
-placeholder="البريد الإلكتروني"
-data-placeholder-ar="البريد الإلكتروني"
-data-placeholder-en="Email">
-
-</div>
-
-
-<div class="form-group">
-
-<label
-data-ar="الرسالة"
-data-en="Message">
-الرسالة
-</label>
-
-<textarea
-required
-placeholder="اكتب رسالتك هنا..."
-data-placeholder-ar="اكتب رسالتك هنا..."
-data-placeholder-en="Write your message here..."></textarea>
-
-</div>
-
-
-<button class="btn btn-primary" type="submit"
-data-ar="إرسال الرسالة"
-data-en="Send Message">
-إرسال الرسالة
-</button>
-
-</form>
-
-</div>
+    </div>
 
 </section>
 
 </main>
 
 
-<!-- ================= FOOTER ================= -->
+<!-- =========================================================
+     FOOTER
+========================================================= -->
 
 <footer>
 
-<div class="container footer-inner">
+    <div class="container">
 
-<div class="footer-brand">
-<span>مكافح</span> MUKAFIH
-</div>
+        <div class="footer-top">
 
-<p
-data-ar="© 2026 مكافح. جميع الحقوق محفوظة."
-data-en="© 2026 Mukafih. All rights reserved.">
-© 2026 مكافح. جميع الحقوق محفوظة.
-</p>
+            <div class="footer-brand">
 
-<p>
-FIRE PROTECTION COMPANY
-</p>
+                <img
+                    src="assets/mukafih-logo.png"
+                    alt="MUKAFIH">
 
-</div>
+                <div>
+
+                    <strong>
+                        مكافح MUKAFIH
+                    </strong>
+
+                    <span>
+                        FIRE PROTECTION TECHNOLOGY
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="socials">
+
+                <a
+                    class="social"
+                    href="https://x.com/muk_fh?s=21"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X">
+                    X
+                </a>
+
+                <a
+                    class="social"
+                    href="https://www.instagram.com/muk.fh/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Instagram">
+                    IG
+                </a>
+
+                <a
+                    class="social"
+                    href="https://www.linkedin.com/company/mokfeh/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="LinkedIn">
+                    in
+                </a>
+
+                <a
+                    class="social"
+                    href="https://www.tiktok.com/@muk.fh"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="TikTok">
+                    TT
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span
+                data-ar="© 2026 مكافح. جميع الحقوق محفوظة."
+                data-en="© 2026 MUKAFIH. All Rights Reserved.">
+
+                © 2026 مكافح. جميع الحقوق محفوظة.
+
+            </span>
+
+
+            <span>
+                Saudi Arabia
+            </span>
+
+        </div>
+
+    </div>
 
 </footer>
 
 
-<!-- ================= IMAGE MODAL ================= -->
+<!-- BACK TO TOP -->
 
-<div class="modal" id="imageModal" onclick="closeModal()">
+<button
+    class="top-btn"
+    id="topButton"
+    type="button"
+    aria-label="Back to top">
 
-<div class="modal-content" onclick="event.stopPropagation()">
+    ↑
 
-<button class="modal-close" onclick="closeModal()">×</button>
-
-<img id="modalImage" src="" alt="Award">
-
-</div>
-
-</div>
+</button>
 
 
 <script>
 
-/* ================= LANGUAGE ================= */
+    /* =========================================================
+       LANGUAGE SYSTEM
+    ========================================================= */
 
-let currentLanguage = "ar";
+    let currentLanguage = "ar";
 
-function toggleLanguage(){
-
-    currentLanguage = currentLanguage === "ar" ? "en" : "ar";
-
-    document.documentElement.lang = currentLanguage;
-    document.documentElement.dir =
-        currentLanguage === "ar" ? "rtl" : "ltr";
-
-    document.body.classList.toggle(
-        "en",
-        currentLanguage === "en"
-    );
-
-    document.querySelectorAll("[data-ar]").forEach(el => {
-
-        const text = el.getAttribute(
-            "data-" + currentLanguage
-        );
-
-        if(text){
-            el.innerHTML = text;
-        }
-
-    });
+    const languageButton =
+        document.getElementById("languageButton");
 
 
-    document.querySelectorAll(
-        "input[data-placeholder-ar], textarea[data-placeholder-ar]"
-    ).forEach(el => {
+    function updateLanguage(language) {
 
-        const placeholder = el.getAttribute(
-            "data-placeholder-" + currentLanguage
-        );
+        currentLanguage = language;
 
-        if(placeholder){
-            el.placeholder = placeholder;
-        }
+        document.documentElement.lang =
+            language;
 
-    });
+        document.documentElement.dir =
+            language === "ar"
+                ? "rtl"
+                : "ltr";
 
-
-    document.getElementById("languageBtn").textContent =
-        currentLanguage === "ar" ? "EN" : "عربي";
-
-}
-
-
-/* ================= MOBILE MENU ================= */
-
-function toggleMenu(){
-
-    document
-        .getElementById("navLinks")
-        .classList.toggle("active");
-
-}
-
-
-/* close mobile menu after clicking */
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-
-    link.addEventListener("click", () => {
 
         document
-            .getElementById("navLinks")
-            .classList.remove("active");
+            .querySelectorAll("[data-ar]")
+            .forEach(element => {
 
-    });
+                const text =
+                    element.getAttribute(
+                        `data-${language}`
+                    );
 
-});
-
-
-/* ================= AWARD MODAL ================= */
-
-function openModal(image){
-
-    document
-        .getElementById("modalImage")
-        .src = image;
-
-    document
-        .getElementById("imageModal")
-        .classList.add("active");
-
-}
+                if (!text) return;
 
 
-function closeModal(){
+                if (
+                    element.tagName === "INPUT" ||
+                    element.tagName === "TEXTAREA"
+                ) {
 
-    document
-        .getElementById("imageModal")
-        .classList.remove("active");
+                    element.placeholder =
+                        text;
 
-}
+                } else if (
+                    element.tagName === "OPTION"
+                ) {
 
+                    element.textContent =
+                        text;
 
-/* ================= CONTACT ================= */
+                } else {
 
-function sendMessage(event){
+                    element.innerHTML =
+                        text;
+                }
 
-    event.preventDefault();
-
-    const message =
-        currentLanguage === "ar"
-        ? "شكرًا لتواصلكم مع مكافح. سيتم التواصل معكم قريبًا."
-        : "Thank you for contacting Mukafih. We will get back to you soon.";
-
-    alert(message);
-
-}
+            });
 
 
-/* ================= ESC KEY ================= */
+        languageButton.textContent =
+            language === "ar"
+                ? "EN"
+                : "ع";
 
-document.addEventListener("keydown", function(e){
 
-    if(e.key === "Escape"){
-        closeModal();
+        /* Form placeholders */
+
+        const message =
+            document.getElementById("message");
+
+        if (message) {
+
+            message.placeholder =
+                language === "ar"
+                    ? "اكتب رسالتك هنا..."
+                    : "Write your message here...";
+        }
+
+        const name =
+            document.getElementById("name");
+
+        if (name) {
+
+            name.placeholder =
+                language === "ar"
+                    ? "الاسم الكامل"
+                    : "Full name";
+        }
+
+        const email =
+            document.getElementById("email");
+
+        if (email) {
+
+            email.placeholder =
+                "name@example.com";
+        }
+
+        const company =
+            document.getElementById("company");
+
+        if (company) {
+
+            company.placeholder =
+                language === "ar"
+                    ? "اسم الشركة"
+                    : "Company name";
+        }
+
     }
 
-});
+
+    languageButton.addEventListener(
+        "click",
+        () => {
+
+            updateLanguage(
+                currentLanguage === "ar"
+                    ? "en"
+                    : "ar"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       MOBILE MENU
+    ========================================================= */
+
+    const menuButton =
+        document.getElementById("menuButton");
+
+    const navLinks =
+        document.getElementById("navLinks");
+
+
+    menuButton.addEventListener(
+        "click",
+        () => {
+
+            navLinks.classList.toggle(
+                "active"
+            );
+
+        }
+    );
+
+
+    document
+        .querySelectorAll(".nav-links a")
+        .forEach(link => {
+
+            link.addEventListener(
+                "click",
+                () => {
+
+                    navLinks.classList.remove(
+                        "active"
+                    );
+
+                }
+            );
+
+        });
+
+
+    /* =========================================================
+       HEADER SCROLL
+    ========================================================= */
+
+    const header =
+        document.getElementById("header");
+
+    const topButton =
+        document.getElementById("topButton");
+
+
+    window.addEventListener(
+        "scroll",
+        () => {
+
+            if (window.scrollY > 50) {
+
+                header.classList.add(
+                    "scrolled"
+                );
+
+            } else {
+
+                header.classList.remove(
+                    "scrolled"
+                );
+
+            }
+
+
+            if (window.scrollY > 500) {
+
+                topButton.classList.add(
+                    "show"
+                );
+
+            } else {
+
+                topButton.classList.remove(
+                    "show"
+                );
+
+            }
+
+        }
+    );
+
+
+    topButton.addEventListener(
+        "click",
+        () => {
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+
+    /* =========================================================
+       SCROLL REVEAL
+    ========================================================= */
+
+    const observer =
+        new IntersectionObserver(
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target.classList.add(
+                            "visible"
+                        );
+
+                        observer.unobserve(
+                            entry.target
+                        );
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: .12
+            }
+        );
+
+
+    document
+        .querySelectorAll(".reveal")
+        .forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+
+    /* =========================================================
+       CONTACT FORM — REAL EMAIL
+    ========================================================= */
+
+    const contactForm =
+        document.getElementById(
+            "contactForm"
+        );
+
+    const submitButton =
+        document.getElementById(
+            "submitButton"
+        );
+
+    const formMessage =
+        document.getElementById(
+            "formMessage"
+        );
+
+
+    contactForm.addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            /* Honeypot */
+
+            const honey =
+                contactForm.querySelector(
+                    '[name="_honey"]'
+                );
+
+            if (honey.value) {
+
+                return;
+            }
+
+
+            const email =
+                document.getElementById(
+                    "email"
+                ).value.trim();
+
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+            if (!emailPattern.test(email)) {
+
+                showFormMessage(
+                    currentLanguage === "ar"
+                        ? "فضلاً أدخل بريدًا إلكترونيًا صحيحًا."
+                        : "Please enter a valid email address.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            submitButton.disabled =
+                true;
+
+
+            submitButton.textContent =
+                currentLanguage === "ar"
+                    ? "جاري الإرسال..."
+                    : "Sending...";
+
+
+            formMessage.className =
+                "form-message";
+
+
+            const formData =
+                new FormData(
+                    contactForm
+                );
+
+
+            /*
+             * FormSubmit uses the user's email
+             * as Reply-To.
+             */
+
+            formData.set(
+                "_replyto",
+                email
+            );
+
+
+            try {
+
+                const response =
+                    await fetch(
+                        "https://formsubmit.co/ajax/mkafh2024@gmail.com",
+                        {
+                            method: "POST",
+
+                            headers: {
+                                "Accept":
+                                    "application/json"
+                            },
+
+                            body: formData
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (
+                    response.ok &&
+                    (
+                        data.success === true ||
+                        data.success === "true"
+                    )
+                ) {
+
+                    showFormMessage(
+                        currentLanguage === "ar"
+                            ? "تم إرسال رسالتك بنجاح. شكرًا لتواصلك مع مكافح."
+                            : "Your message has been sent successfully. Thank you for contacting MUKAFIH.",
+                        "success"
+                    );
+
+
+                    contactForm.reset();
+
+
+                } else {
+
+                    throw new Error(
+                        "Form submission failed"
+                    );
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "Form Error:",
+                    error
+                );
+
+
+                showFormMessage(
+                    currentLanguage === "ar"
+                        ? "تعذر إرسال الرسالة حاليًا. فضلاً حاول مرة أخرى."
+                        : "We could not send your message right now. Please try again.",
+                    "error"
+                );
+
+
+            } finally {
+
+                submitButton.disabled =
+                    false;
+
+
+                submitButton.textContent =
+                    currentLanguage === "ar"
+                        ? "إرسال الرسالة"
+                        : "Send Message";
+
+            }
+
+        }
+    );
+
+
+    function showFormMessage(
+        message,
+        type
+    ) {
+
+        formMessage.textContent =
+            message;
+
+        formMessage.className =
+            `form-message ${type}`;
+
+    }
+
+
+    /* =========================================================
+       START IN ARABIC
+    ========================================================= */
+
+    updateLanguage("ar");
 
 </script>
 
+
 </body>
+
 </html>
